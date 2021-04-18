@@ -41,6 +41,11 @@ from typing import List
 
 class Solution:
     def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+        """
+        这道题略微特殊，因为要求是等差数列，可以很自然的想到子数组必定满足 num[i] - num[i-1] = num[i-1] - num[i-2]。
+        然而由于我们对于 dp 数组的定义通常为以 i 结尾的，满足某些条件的子数 组数量，
+        而等差子数组可以在任意一个位置终结，因此此题在最后需要对 dp 数组求和。
+        """
         # dp[i]记录的是以nums[i]结尾的等差数列个数，dp[i]=dp[i-1]+1。
         # 如nums=[1,2,3,4,5]以nums[3]=4结尾的有[[2,3,4],[1,2,3,4]]，则以nums[4]=5结尾的有[[2,3,4,5],[1,2,3,4,5],[3,4,5]]，只多一个
         dp = 0
