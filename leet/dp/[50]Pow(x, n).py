@@ -45,8 +45,8 @@ class Solution:
         while n > 0:
             if n & 1:
                 ans *= x
-            x *= x
-            n >>= 1
+            x *= x  # 翻倍
+            n >>= 1  # 二进制右移一位
         return ans
 
     def myPow(self, x: float, n: int) -> float:

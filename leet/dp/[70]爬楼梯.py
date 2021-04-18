@@ -39,7 +39,7 @@ class Solution:
         return a
 
     def MatrixQuickPow(self, x, n):
-        """自定义矩阵快速幂"""
+        """自定义矩阵快速幂 https://blog.csdn.net/bianxia123456/article/details/105167294/"""
         ans = [[1, 0], [0, 1]]
         while n > 0:
             if n & 1:
@@ -50,7 +50,7 @@ class Solution:
 
     def climbStairs(self, n: int) -> int:
         """矩阵快速幂O(log(n))"""
-        return self.MatrixQuickPow([[1, 1], [1, 0]], n)[0][0]
+        return self.MatrixQuickPow([[1, 1], [1, 0]], n)[0][0]  # n阶楼梯对应的是斐波那契数列的n+1项
 
     def climbStairs3(self, n: int) -> int:
         """通项公式O(math.pow)"""
