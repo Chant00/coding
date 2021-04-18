@@ -40,6 +40,9 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def shortestToChar(self, S, C):
+        """从左向右遍历，记录上一个字符 C 出现的位置 prev，那么答案就是 i - prev。
+        从右向左遍历，记录上一个字符 C 出现的位置 prev，那么答案就是 prev - i。
+        这两个值取最小就是答案。"""
         ret = []
         prev = float('-inf')
         for i, c in enumerate(S):
