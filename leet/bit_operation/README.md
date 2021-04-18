@@ -17,6 +17,28 @@ x | 0s = x    x | 1s = 1s    x | x = x
 例如对于二进制表示 11110100，取负得到 00001100，这两个数按位与得到 00000100。 
 还有更多的并不常用的技巧，若读者感兴趣可以自行研究，这里不再赘述。
 
+练习TODO：
+
+基础难度
+
+268. Missing Number (Easy)
+
+Single Number 的变种题。除了利用二进制，也可以使用高斯求和公式。
+
+693. Binary Number with Alternating Bits (Easy)
+
+利用位运算判断一个数的二进制是否会出现连续的 0 和 1。
+
+476. Number Complement (Easy)
+
+二进制翻转的变种题。
+
+进阶难度
+
+260. Single Number III (Medium)
+
+Single Number 的 follow-up，需要认真思考如何运用位运算求解。
+
 ####
 快速幂参考：
 1. [python整数快速幂和矩阵快速幂](https://blog.csdn.net/bianxia123456/article/details/105167294/)
