@@ -39,13 +39,29 @@ from typing import List
 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        """todo: 空间压缩"""
-        pass
+        """动态规划O(m*n)+空间压缩。因为 dp 矩阵的每一个值只和左边和上面的值相关，我们可以使用空间压缩将 dp 数组压缩为 一维。
+        对于第 i 行，在遍历到第 j 列的时候，因为第 j-1 列已经更新过了，所以 dp[j-1] 代表 dp[i][j-1] 的值；
+        而 dp[j] 待更新，当前存储的值是在第 i-1 行的时候计算的，所以代表 dp[i-1][j] 的值。"""
+        row, column = len(grid), len(grid[0])
+        dp = [0] * column
+
+        for i in range(row):
+            for j in range(column):
+                if i == 0 and j == 0:  # 1.1 初始化第一个值
+                    dp[0] = grid[0][0]
+                elif i == 0:  # 1.2 初始化第一行
+                    dp[j] = dp[j - 1] + grid[0][j]
+                elif j == 0:  # 1.3 初始化第一列
+                    dp[0] = dp[0] + grid[i][0]
+                else:
+                    dp[j] = min(dp[j], dp[j - 1]) + grid[i][j]
+        return dp[column - 1]
 
     def minPathSum1(self, grid: List[List[int]]) -> int:
+        """动态规划O(m*n)"""
         row, column = len(grid), len(grid[0])
         dp = [[0] * column for _ in range(row)]
-        # 1.1 初始化第一列
+        # 1.1 初始化第一个值
         dp[0][0] = grid[0][0]
         # 1.2 初始化第一列
         for i in range(1, row):
@@ -58,4 +74,5 @@ class Solution:
             for j in range(1, column):
                 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
         return dp[row - 1][column - 1]
+
 # leetcode submit region end(Prohibit modification and deletion)
