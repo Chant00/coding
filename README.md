@@ -1,6 +1,11 @@
 # coding
 ### 主要是自己的刷题笔记，参考`谷歌高畅Leetcode刷题笔记`和`CyC2018/CS-Notes Leetcode 题解`，按知识分类的刷题
 
+todo:
+1. 谷歌高畅Leetcode刷题笔记 动态规划
+2. CS-Notes 动态规划
+3. LeetcodeTop 各公司热门，美团、字节
+
 ### 参考资料
 1. [谷歌高畅Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1RtXxCwzVNupojU1MBBUemw) 提取码: iadg 
 2. [CyC2018/CS-Notes Leetcode 题解](https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
