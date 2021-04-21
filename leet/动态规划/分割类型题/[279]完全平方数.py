@@ -47,7 +47,7 @@ class Solution:
         square_nums = [i ** 2 for i in range(int(math.sqrt(n) + 1))]
         for i in range(1, n + 1):
             for square in square_nums:
-                if i < square:
+                if square > i:
                     break
                 dp[i] = min(dp[i], dp[i - square] + 1)
         return dp[n]
