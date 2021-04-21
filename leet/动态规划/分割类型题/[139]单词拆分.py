@@ -32,6 +32,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def wordBreak2(self, s: str, wordDict: List[str]) -> bool:
         """dp[i] 表示 s 的前 i 位是否可以用 wordDict 中的单词表示。
