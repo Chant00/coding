@@ -70,6 +70,7 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def numDecodings(self, s: str) -> int:
+        """注意dp的长度用n+1不是n"""
         n = len(s)
         dp = [1] + [0] * n
         for i in range(1, n + 1):
