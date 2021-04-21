@@ -39,6 +39,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         """用原数组存算出来的值，空间复杂度是不是就降到O(1)"""
