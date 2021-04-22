@@ -35,6 +35,7 @@ from typing import List
 
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
+        """https://www.zhihu.com/question/36132386/answer/712269942"""
         l, r = 0, len(nums) - 1
         # loc = len(nums)
         while l <= r:
