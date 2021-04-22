@@ -45,7 +45,7 @@ class Solution:
     def minPathSum1(self, grid: List[List[int]]) -> int:
         row, column = len(grid), len(grid[0])
         dp = [[0] * column for _ in range(row)]
-        # 1.1 初始化
+        # 1.1 初始化 
         dp[0][0] = grid[0][0]
         # 1.2 初始化第一列
         for i in range(1, row):
