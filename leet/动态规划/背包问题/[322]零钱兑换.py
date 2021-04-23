@@ -58,7 +58,7 @@ from typing import List
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        """完全背包问题，正向遍历"""
+        """完全背包问题，正向遍历 """
         dp = [0] + [amount + 2] * amount
 
         for coin in coins:
