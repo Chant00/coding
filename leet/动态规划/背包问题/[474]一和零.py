@@ -41,6 +41,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def count_zeros_ones(self, s):
         cnt0, cnt1 = 0, 0
