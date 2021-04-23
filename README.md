@@ -8,9 +8,10 @@ todo:
 
 ### 参考资料
 1. [谷歌高畅Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1RtXxCwzVNupojU1MBBUemw) 提取码: iadg 
-2. [CyC2018/CS-Notes Leetcode 题解](https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
-3. [BAT霜神Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1LkptCKW5QK3IkB6nVnn2Zw) 提取码: 6iaq
+2. [leetcode-master 刷题攻略](https://github.com/youngyangyang04/leetcode-master)
+3. [CyC2018/CS-Notes Leetcode 题解](https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
 4. [afatcoder/LeetcodeTop 按照公司岗位分类的最新面试题](https://github.com/afatcoder/LeetcodeTop)
+5. [BAT霜神Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1LkptCKW5QK3IkB6nVnn2Zw) 提取码: 6iaq
 
 #### 资料2
 1. [二分查找, 思路很简单，细节是魔鬼](https://www.zhihu.com/question/36132386/answer/712269942)
