@@ -60,7 +60,8 @@ class Solution:
         """
         dp = [[0] * (n + 1) for _ in range(m + 1)]
         for s in strs:
-            cnt0, cnt1 = self.count_zeros_ones(s)
+            # cnt0, cnt1 = self.count_zeros_ones(s)
+            cnt0, cnt1 = s.count('0'), s.count('1')
             for i in range(m, cnt0 - 1, -1):
                 for j in range(n, cnt1 - 1, -1):
                     dp[i][j] = max(dp[i][j], dp[i - cnt0][j - cnt1] + 1)
