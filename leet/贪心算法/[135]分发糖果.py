@@ -31,6 +31,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         """把所有孩子的糖果数初始化为 1；
