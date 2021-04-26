@@ -69,7 +69,7 @@ class Solution:
 
     def maxProfit2(self, prices: List[int]) -> int:
         """动态规划O(n)，空间O(1)，空间优化"""
-        dp0, dp1 = 0, -prices[0]
+        dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
         n = len(prices)
         for i in range(1, n):
             cur_dp0 = max(dp0, dp1 + prices[i])
