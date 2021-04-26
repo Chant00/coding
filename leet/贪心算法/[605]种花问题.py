@@ -39,7 +39,9 @@ from typing import List
 
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        """优化：连续0区的规律，可种植花的数量等于(count0 - 1) // 2"""
+        """优化：连续0区的规律，可种植花的数量等于(count0 - 1) // 2
+        可以举例归纳，也可以仔细推导
+        """
         # 当前全0区段中连续0的数量，刚开始预设1个0，因为开头花坛的最左边没有花，可以认为存在一个虚无的0
         count, count0 = 0, 1  # count0=1相当于左边补0
         for bed in flowerbed:
