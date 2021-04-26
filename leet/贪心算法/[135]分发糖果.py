@@ -31,12 +31,30 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
-from typing import List
-
-
 class Solution:
     def candy(self, ratings: List[int]) -> int:
-        """把所有孩子的糖果数初始化为 1；
+        """空间O(1)更节省空间，时间复杂度都是O(n)，但是只遍历一遍，比方法一更快"""
+        n = len(ratings)
+        ret = 1
+        inc, dec, pre = 1, 0, 1
+
+        for i in range(1, n):
+            if ratings[i] >= ratings[i - 1]:
+                dec = 0
+                pre = (1 if ratings[i] == ratings[i - 1] else pre + 1)
+                ret += pre
+                inc = pre
+            else:
+                dec += 1
+                if dec == inc:
+                    dec += 1
+                ret += dec
+                pre = 1
+
+        return ret
+
+    def candy1(self, ratings: List[int]) -> int:
+        """空间O(n)把所有孩子的糖果数初始化为 1；
         先从左往右遍历一遍，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的 糖果数加 1；
         再从右往左遍历一遍，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加 1。
         通过这两次遍历， 分配的糖果就可以满足题目要求了。这里的贪心策略即为，在每次遍历中，只考虑并更新相邻一 侧的大小关系。"""
