@@ -33,19 +33,37 @@ from typing import List
 
 
 class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        """贪心算法
+        用buy表示在最大化收益的前提下，如果我们手上拥有一支股票，那么它的最低买入价格是多少。在初始时，buy的值为prices[0]加上手续费fee。
+        """
+        n = len(prices)
+        buy = prices[0] + fee
+        profit = 0
+        for i in range(1, n):
+            # 在买入时计算扣费，如果在卖出时扣费，就没办法后悔，在更高价时卖出
+            if prices[i] + fee < buy:
+                buy = prices[i] + fee
+            # 卖出
+            elif prices[i] > buy:
+                profit += prices[i] - buy
+                buy = prices[i]
+        return profit
+
+    def maxProfit1(self, prices: List[int], fee: int) -> int:
+        """动态规划，空间优化"""
+        n = len(prices)
+        dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
+        for i in range(1, n):
+            dp0 = max(dp0, dp1 + prices[i] - fee)
+            dp1 = max(dp1, dp0 - prices[i])
+        return dp0
+
     def maxProfit_wrong(self, prices: List[int], fee: int) -> int:
         # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
         dp0, dp1 = 0, 0
         for price in prices:
             dp0 = max(dp0, dp1 + price - fee)  # 这里应该是有问题的，但是居然能AC，莫非是测试里的fee都比prices[0]大？
             dp1 = max(dp1, dp0 - price)
-        return dp0
-
-    def maxProfit(self, prices: List[int], fee: int) -> int:
-        n = len(prices)
-        dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
-        for i in range(1, n):
-            dp0 = max(dp0, dp1 + prices[i] - fee)
-            dp1 = max(dp1, dp0 - prices[i])
         return dp0
 # leetcode submit region end(Prohibit modification and deletion)
