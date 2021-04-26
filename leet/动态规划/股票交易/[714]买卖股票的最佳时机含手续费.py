@@ -33,18 +33,17 @@ from typing import List
 
 
 class Solution:
-    def maxProfit(self, prices: List[int], fee: int) -> int:
+    def maxProfit_wrong(self, prices: List[int], fee: int) -> int:
         # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
         dp0, dp1 = 0, 0
         for price in prices:
-            dp0 = max(dp0, dp1 + price - fee)
+            dp0 = max(dp0, dp1 + price - fee)  # 这里应该是有问题的，但是居然能AC，莫非是测试里的fee都比prices[0]大？
             dp1 = max(dp1, dp0 - price)
         return dp0
 
-    def maxProfit1(self, prices: List[int], fee: int) -> int:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
         n = len(prices)
-        # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
-        dp0, dp1 = 0, -prices[0]
+        dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
         for i in range(1, n):
             dp0 = max(dp0, dp1 + prices[i] - fee)
             dp1 = max(dp1, dp0 - prices[i])

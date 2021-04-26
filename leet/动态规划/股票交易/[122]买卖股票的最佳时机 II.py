@@ -62,7 +62,7 @@ class Solution:
         dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
         n = len(prices)
         for i in range(1, n):
-            # dp0如果改变取 dp1 + prices[i]，那么dp1必然只能取dp1，两者互斥
+            # dp0如果改变取 dp1 + prices[i]，那么dp1必然只能取dp1，两者互斥？
             dp0 = max(dp0, dp1 + prices[i])
             dp1 = max(dp1, dp0 - prices[i])
         return dp0
