@@ -17,6 +17,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         """空间优化
