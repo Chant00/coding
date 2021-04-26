@@ -57,11 +57,18 @@ class Solution:
             ans += max(0, prices[i] - prices[i - 1])
         return ans
 
+    def maxProfit3(self, prices: List[int]) -> int:
+        """动态规划O(n)，空间O(1)，空间优化，循环中其实无需临时变量"""
+        dp0, dp1 = 0, -prices[0]  # dp0手里没有股票时的最大收益，dp1手里有1支股票的最大收益
+        n = len(prices)
+        for i in range(1, n):
+            # dp0如果改变取 dp1 + prices[i]，那么dp1必然只能取dp1，两者互斥
+            dp0 = max(dp0, dp1 + prices[i])
+            dp1 = max(dp1, dp0 - prices[i])
+        return dp0
+
     def maxProfit2(self, prices: List[int]) -> int:
-        """动态规划O(n)，空间O(1)，空间优化
-        定义状态 dp[i][0] 表示第 i 天交易完后手里没有股票的最大利润，
-        dp[i][1] 表示第 i 天交易完后手里持有一支股票的最大利润（i 从 0 开始）
-        """
+        """动态规划O(n)，空间O(1)，空间优化"""
         dp0, dp1 = 0, -prices[0]
         n = len(prices)
         for i in range(1, n):
