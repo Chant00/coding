@@ -31,6 +31,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         """空间O(1)更节省空间，时间复杂度都是O(n)，但是只遍历一遍，比方法一更快"""
