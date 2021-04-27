@@ -37,7 +37,7 @@ from typing import List
 
 
 class Solution:
-    def checkPossibility(self, nums):
+    def checkPossibility(self, nums: List[int]) -> bool:
         """标记修改次数的代码，可以进一步解决k次修改的问题
         遍历数组，如果遇到递减：
             还能修改：
@@ -45,17 +45,16 @@ class Solution:
                 修改方案2：将nums[i + 1]放大至nums[i]；
             第二次遇到递减，不能修改了：直接返回false；
         """
-        n = len(nums)
         count = 0  # 标识修改次数
-        for i in range(1, n):
-            if nums[i] < nums[i - 1]:  # 出现递减
+        for i in range(len(nums) - 1):
+            if nums[i] > nums[i + 1]:  # 出现递减
                 count += 1
-                if count >= 1:
+                if count > 1:
                     return False
-                if i == 1 or nums[i] >= nums[i - 2]:
-                    nums[i - 1] = nums[i]
+                if i == 0 or nums[i + 1] >= nums[i - 1]:
+                    nums[i] = nums[i + 1]
                 else:
-                    nums[i] = nums[i - 1]
+                    nums[i + 1] = nums[i]
         return count <= 1
 
     def checkPossibility2(self, nums: List[int]) -> bool:
