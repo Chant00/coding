@@ -38,7 +38,7 @@ from typing import List
 
 class Solution:
     def checkPossibility(self, nums):
-        """
+        """标记修改次数的代码，可以进一步解决k次修改的问题
         遍历数组，如果遇到递减：
             还能修改：
                 修改方案1：将nums[i]缩小至nums[i + 1]；
