@@ -43,7 +43,7 @@ class Solution:
             还能修改：
                 修改方案1：将nums[i]缩小至nums[i + 1]；
                 修改方案2：将nums[i + 1]放大至nums[i]；
-            修改后第二次遇到递减，不能修改了：直接返回false；
+            第二次遇到递减，不能修改了：直接返回false；
         """
         n = len(nums)
         count = 0  # 标识修改次数
