@@ -37,9 +37,24 @@ from typing import List
 
 
 class Solution:
-    def checkPossibility(self, nums: List[int]) -> bool:
+    def checkPossibility(self, nums):
+        """"""
+        n = len(nums)
+        count = 0  # 标识修改次数
+        for i in range(1, n):
+            if nums[i] < nums[i - 1]:
+                count += 1
+                if count >= 1:
+                    return False
+                if i == 1 or nums[i] >= nums[i - 2]:
+                    nums[i - 1] = nums[i]
+                else:
+                    nums[i] = nums[i - 1]
+        return count <= 1
+
+    def checkPossibility2(self, nums: List[int]) -> bool:
         """简化代码"""
-        flag = True
+        flag = True  # 标识是否还能修改
         for i in range(len(nums) - 1):
             if nums[i] > nums[i + 1]:  # 要么缩小nums[i]，要么放大nums[i+1]
                 if flag:  # 如果还有修改机会，进行修改
