@@ -50,6 +50,7 @@ class Solution:
                 nums1[t] = nums2[j]
                 j -= 1
             t -= 1
+        # nums2剩余部分，nums1剩余不用处理，在原来的位置就刚好
         while j >= 0:
             nums1[t] = nums2[j]
             j -= 1
@@ -69,6 +70,7 @@ class Solution:
             else:
                 tmp.append(nums2[j])
                 j += 1
+        # 处理剩余部分
         if i < m:
             tmp.extend(nums1[i:m])
         elif j < n:
