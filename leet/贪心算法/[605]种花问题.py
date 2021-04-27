@@ -47,9 +47,9 @@ class Solution:
                 count0 += 1
             else:
                 count += (count0 - 1) // 2  # 注意先计算count，再将count0 = 0
-                if count > n:
-                    return True
                 count0 = 0
+                if count >= n:
+                    return True
         # 最后一段0区还未结算：
         count0 += 1  # 相当于右边补0
         count += (count0 - 1) // 2
