@@ -1,10 +1,11 @@
 # coding
-### 主要是自己的刷题笔记，参考`谷歌高畅Leetcode刷题笔记`和`CyC2018/CS-Notes Leetcode 题解`，按知识分类的刷题
 
-leetcode todo:
+主要是自己的刷题笔记，参考`谷歌高畅Leetcode刷题笔记`和`CyC2018/CS-Notes Leetcode 题解`，按知识分类的刷题
+
+#### leetcode todo:
 1. [146]LRU 缓存机制
 
-todo:
+#### todo:
 1. 谷歌高畅Leetcode刷题笔记 动态规划
 2. CS-Notes 动态规划
 3. LeetcodeTop 各公司热门，美团、字节
