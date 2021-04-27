@@ -57,6 +57,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
         """其实就是寻找不重叠区间个数"""
