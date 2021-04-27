@@ -64,7 +64,7 @@ class Solution:
             if flowerbed[i] == 0 and flowerbed[i - 1] == 0 and flowerbed[i + 1] == 0:
                 flowerbed[i] = 1
                 count += 1
-            if count >= n:  # 注意这里的缩进，老是写错
+            if count >= n:  # 注意这里的缩进，老是写错, 且必须是>=0，特殊情况n=0, 而count已经+=1大于0了
                 return True
         return False
 # leetcode submit region end(Prohibit modification and deletion)
