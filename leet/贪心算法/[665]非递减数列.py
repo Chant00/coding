@@ -38,11 +38,17 @@ from typing import List
 
 class Solution:
     def checkPossibility(self, nums):
-        """"""
+        """
+        遍历数组，如果遇到递减：
+            还能修改：
+                修改方案1：将nums[i]缩小至nums[i + 1]；
+                修改方案2：将nums[i + 1]放大至nums[i]；
+            修改后第二次遇到递减，不能修改了：直接返回false；
+        """
         n = len(nums)
         count = 0  # 标识修改次数
         for i in range(1, n):
-            if nums[i] < nums[i - 1]:
+            if nums[i] < nums[i - 1]:  # 出现递减
                 count += 1
                 if count >= 1:
                     return False
@@ -74,7 +80,7 @@ class Solution:
             还能修改：
                 修改方案1：将nums[i]缩小至nums[i + 1]；
                 修改方案2：将nums[i + 1]放大至nums[i]；
-            不能修改了：直接返回false；
+            修改后第二次遇到递减，不能修改了：直接返回false；
         """
         if len(nums) == 1: return True
         flag = nums[0] <= nums[1]  # 标识是否还能修改
