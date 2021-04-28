@@ -49,7 +49,7 @@ class Solution:
             if s[r] in lookup:
                 lookup[s[r]] -= 1
                 # 这里的判断重点是要理解lookup中的值代表什么，1是一个临界点
-                if lookup[s[r]] == 0:
+                if lookup[s[r]] == 0:  # 因为先操作了lookup[s[r]] -= 1，否则就是lookup[s[r]] == 1
                     count -= 1
             r += 1
 
