@@ -49,7 +49,7 @@ from typing import List
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        """双向奔赴空间复杂度O(1)"""
+        """双向奔赴空间复杂度O(1) todo: 可否用二分法加速？"""
         l, r = 0, len(numbers) - 1
         while l < r:
             total = numbers[l] + numbers[r]
