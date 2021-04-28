@@ -55,7 +55,7 @@ class Solution:
         return max_word
 
     def findLongestWord(self, s: str, dictionary: List[str]) -> str:
-        """先排序，再双指针迭代匹配"""
+        """先排序，再双指针迭代匹配 这个算法复杂度不不排序更高，但是实际却更快，因为如果先找到最长的那个匹配单词，能省去一些不必要的匹配过程"""
         dictionary.sort(key=lambda x: (-len(x), x))
         for word in dictionary:
             i = j = 0
