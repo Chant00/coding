@@ -32,6 +32,7 @@ class Solution:
         if x == 0:
             return 0
         ans = int(math.exp(0.5 * math.log(x)))
+        # 浮点数问题，我们应当找出 ans  与 ans1  中哪一个是真正的答案
         return ans + 1 if (ans + 1) ** 2 <= x else ans
 
     def mySqrt3(self, x: int) -> int:
