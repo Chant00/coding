@@ -20,7 +20,6 @@
 5. [BAT霜神Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1LkptCKW5QK3IkB6nVnn2Zw) 提取码: 6iaq
 
 #### 算法细节资料
-1. [二分查找, 思路很简单，细节是魔鬼](https://www.zhihu.com/question/36132386/answer/712269942)
 2. 堆排序
    1. [二叉树的父子节点位置关系（学习笔记）](https://zhuanlan.zhihu.com/p/339763580)
    2. [数据结构和算法入门之小顶堆和大顶堆Python实现](https://zhuanlan.zhihu.com/p/77583063)
