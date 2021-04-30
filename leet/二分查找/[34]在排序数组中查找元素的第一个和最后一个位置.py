@@ -53,7 +53,7 @@ def binarySearch(nums, target, lower):
         mid = l + (r - l) // 2
         if nums[mid] > target or (lower and nums[mid] == target):
             r = mid - 1
-            ans = mid
+            ans = mid  # Q: 为什么只能在nums[mid] > target中更新ans？
         else:
             l = mid + 1
     return ans
