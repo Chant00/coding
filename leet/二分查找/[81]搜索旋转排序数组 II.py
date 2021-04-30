@@ -76,7 +76,7 @@ class Solution:
         return False
 
     def search1(self, nums: List[int], target: int) -> bool:
-        """二分查找。
+        """二分查找。对比33题，多了重复元素，nums[mid] == nums[l]时无法判断左右区间谁是増序，所以将l右移一位。
         O(n)最坏的情况nums中全是同一个数字，需要遍历整个数组才能返回False。
         无重复数字则为O(log n)
         """
