@@ -103,3 +103,14 @@ class Solution:
 
         return False
 # leetcode submit region end(Prohibit modification and deletion)
+"""
+三种情况
+nums[mid]=nums[l]: [1,1,1,2] l到mid都是同一个数，无需处理，整个区间増序
+nums[mid]=nums[r]: [2,3,3,3] mid到r都是同一个数，无需处理，整个区间増序
+nums[l]=nums[mid]=nums[r]: 
+    [3,3,2,3] l到mid都是同一个数
+    [3,2,3,3,3] mid到r都是同一个数
+# Solution().search([1, 2], 2)
+Solution().search([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1], 2)
+# Solution().search([1, 1, 1, 1, 1, 1, 1, 1, 2], 2)
+"""
