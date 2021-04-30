@@ -73,6 +73,7 @@ def binarySearch2(nums, target, lower, l, r):
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        """官方题解，二分法，左右边界都找"""
         left = binarySearch(nums, target, True)
         right = binarySearch(nums, target, False) - 1
         if left <= right < len(nums) and nums[left] == target and nums[right] == target:
@@ -81,6 +82,7 @@ class Solution:
             return [-1, -1]
 
     def searchRange1(self, nums: List[int], target: int) -> List[int]:
+        """先找左边界，有左边界再找右边界"""
         left = binarySearch(nums, target, True)
         if not (left < len(nums) and nums[left] == target):
             return [-1, -1]
