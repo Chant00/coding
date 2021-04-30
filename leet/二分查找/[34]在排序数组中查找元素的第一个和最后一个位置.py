@@ -89,7 +89,7 @@ class Solution:
         return [left, right]
 
     def searchRange3(self, nums: List[int], target: int) -> List[int]:
-        """二分法找到左边界后，在左边界之后的片段中二分找有边界"""
+        """二分法找到左边界后，在左边界之后的片段中二分找右边界"""
         left = binarySearch2(nums, target, True, 0, len(nums) - 1)
         if not (left < len(nums) and nums[left] == target):
             return [-1, -1]
