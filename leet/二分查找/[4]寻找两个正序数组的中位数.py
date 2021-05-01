@@ -65,7 +65,7 @@ from typing import List
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        """划分数组"""
+        """划分数组O(log(min(m,n)))"""
         m, n = len(nums1), len(nums2)
         if m > n:  # 确保m<n，否则计算j = (m + n + 1) // 2 - i可能会出现负数
             return self.findMedianSortedArrays(nums2, nums1)
@@ -91,7 +91,7 @@ class Solution:
         return median1 if (m + n) % 2 == 1 else (median1 + median2) / 2
 
     def getKthElement(self, nums1, nums2, k):
-        """
+        """O(log(m+n))
         - 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
         - 这里的 "/" 表示整除
         - nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
