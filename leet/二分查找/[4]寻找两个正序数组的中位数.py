@@ -71,6 +71,7 @@ class Solution:
             return self.findMedianSortedArrays(nums2, nums1)
 
         l, r = 0, m
+        median1, median2 = 0, 0  # median1前一部分的最大值,median2后一部分的最小值
         while l <= r:
             i = l + (r - l) // 2
             j = (m + n + 1) // 2 - i
