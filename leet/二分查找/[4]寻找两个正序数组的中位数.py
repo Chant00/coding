@@ -84,7 +84,7 @@ class Solution:
             nums_jm1 = float('-inf') if j == 0 else nums2[j - 1]
             nums_j = float('inf') if j == n else nums2[j]
 
-            # 本来是需要找的是在[0,m]中的i使得nums_im1 <= nums_j 且 nums_jm1<=nums_i
+            # 本来是需要找的是交叉小于，即在[0,m]中的i使得nums_im1 <= nums_j 且 nums_jm1<=nums_i
             # 等价于找到使得nums_im1 <= nums_j的最大的i即可
             if nums_im1 <= nums_j:  # < 或者 <= 都可以
                 median1, median2 = max(nums_im1, nums_jm1), min(nums_i, nums_j)
