@@ -73,6 +73,8 @@ class Solution:
         l, r = 0, m
         median1, median2 = 0, 0  # median1前一部分的最大值,median2后一部分的最小值
         while l <= r:
+            # 前一部分包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
+            # 后一部分包含 nums1[i .. m-1] 和 nums2[j .. n-1]
             i = l + (r - l) // 2
             j = (m + n + 1) // 2 - i
             # i=0、i=m、j=0、j=n 的临界条件处理
@@ -84,8 +86,10 @@ class Solution:
 
             # 本来是需要找的是在[0,m]中的i使得nums_im1 <= nums_j 且 nums_jm1<=nums_i
             # 等价于找到使得nums_im1 <= nums_j的最大的i即可
-            if nums_im1 < nums_j:  # < 或者 <= 都可以
+            if nums_im1 <= nums_j:  # < 或者 <= 都可以
                 median1, median2 = max(nums_im1, nums_jm1), min(nums_i, nums_j)
+                # if nums_jm1 <= nums_i:
+                #     break
                 # 要找的是满足nums_im1 < nums_j的最大的i，所以还要继续l = i + 1，在右边继续查找
                 l = i + 1
             else:
