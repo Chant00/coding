@@ -79,8 +79,8 @@ class Solution:
             j = (m + n + 1) // 2 - i
             # i=0、i=m、j=0、j=n 的临界条件处理
             # nums_im1, nums_i, nums_jm1, nums_j 分别表示 nums1[i-1], nums1[i], nums2[j-1], nums2[j]
-            nums_im1 = float('-inf') if i == 0 else nums1[i - 1]
-            nums_i = float('inf') if i == m else nums1[i]
+            nums_im1 = float('-inf') if i == 0 else nums1[i - 1]  # 当一个数不出现在前一部分时，对应的值为负无穷，就不会对前一部分的最大值产生影响；
+            nums_i = float('inf') if i == m else nums1[i]  # 当一个数不出现在后一部分时，对应的值为正无穷，就不会对前一部分的最小值产生影响；
             nums_jm1 = float('-inf') if j == 0 else nums2[j - 1]
             nums_j = float('inf') if j == n else nums2[j]
 
