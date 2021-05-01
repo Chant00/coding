@@ -84,7 +84,7 @@ class Solution:
 
             if nums_im1 < nums_j:
                 median1, median2 = max(nums_im1, nums_jm1), min(nums_i, nums_j)
-                # 找的是满足nums_im1 < nums_j的最大的i，所以还要继续l = i + 1，在右边继续查找
+                # 要找的是满足nums_im1 < nums_j的最大的i，所以还要继续l = i + 1，在右边继续查找
                 l = i + 1
             else:
                 r = i - 1
