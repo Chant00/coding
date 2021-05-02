@@ -32,7 +32,7 @@ def select_sort(arr):
 
 
 def insertion_sort(arr):
-    """O(n^2)"""
+    """O(n^2)对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。"""
     for i in range(1, len(arr)):
         cur = arr[i]
         pre_idx = i - 1
