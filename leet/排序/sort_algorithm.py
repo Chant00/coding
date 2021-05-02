@@ -159,7 +159,7 @@ def quick_sort(arr, left, right):
 
 
 def quick_sort1(arr, left, right):
-    """常见的双指针快排"""
+    """常见的双指针双向奔赴快排"""
     if left >= right:
         return
     low = left
@@ -179,22 +179,20 @@ def quick_sort1(arr, left, right):
     return arr
 
 
-quick_sort1([6, 4, 5, 6, 7, 8], 0, 5)
-
-
 def quick_sort2(arr):
-    """超级精简版快速排序 lt:less than  ge:great和equal"""
+    """超级精简版快速排序，空间占用大"""
     if len(arr) <= 1: return arr
     return quick_sort2([lt for lt in arr[1:] if lt < arr[0]]) + arr[0:1] \
            + quick_sort2([ge for ge in arr[1:] if ge >= arr[0]])
 
 
-def quick_sort():
-    pass
-
-
 def test():
     import numpy as np
+    from copy import deepcopy
+
+    a = np.random.randint(0, 1000, size=10)
+    partition(deepcopy(a), 0, len(a) - 1)
+    partition2(deepcopy(a), 0, len(a) - 1)
 
     for _ in range(30):
         a = np.random.randint(0, 1000, size=1000)
@@ -203,7 +201,7 @@ def test():
         # assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
         # assert all(np.sort(a[1:]) == shell_sort(a[1:]))
         # assert all(np.sort(a[0:]) == merge_sort(a[0:]))
-        assert all(np.sort(a[0:]) == quick_sort(a[0:], 0, len(a) - 1))
+        assert all(quick_sort(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
     """
     b = list(a)
     %timeit merge_sort(b[0:])
