@@ -41,7 +41,7 @@ from typing import List
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        """快排"""
+        """堆排序"""
         counter = collections.Counter(nums)
         heap = []
         i = 0
@@ -69,7 +69,7 @@ class Solution:
         return [i[0] for i in num_cnt[:i + 1]]
 
     def topKFrequent2(self, nums: List[int], k: int) -> List[int]:
-        """堆排序"""
+        """快排"""
         counter = collections.Counter(nums)
         num_cnt = list(counter.items())
         top_K = self.findTopK(num_cnt, k, 0, len(num_cnt) - 1)
