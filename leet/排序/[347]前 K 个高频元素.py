@@ -62,8 +62,10 @@ class Solution:
 
         for j in range(low + 1, high + 1):
             if num_cnt[j][1] > base:
-                num_cnt[i + 1], num_cnt[j] = num_cnt[j], num_cnt[i + 1]
+                # num_cnt[i + 1], num_cnt[j] = num_cnt[j], num_cnt[i + 1]
+                # i += 1
                 i += 1
+                num_cnt[i], num_cnt[j] = num_cnt[j], num_cnt[i]
         num_cnt[low], num_cnt[i] = num_cnt[i], num_cnt[low]
 
         if i == k - 1:
