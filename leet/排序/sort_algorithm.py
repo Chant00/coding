@@ -97,16 +97,36 @@ def shellSort(arr):
             arr[j] = tmp
     return arr
 
-def merge_sort():
-    pass
+
+def merge(left, right):
+    l, r = 0, 0
+    res = []
+    while l < len(left) and r < len(right):
+        if left[l] < right[r]:
+            res.append(left[l])
+            l += 1
+        else:
+            res.append(right[r])
+            r += 1
+    res.extend(left[l:])
+    res.extend(right[r:])
+    return res
+
+
+def merge_sort(arr):
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+    return merge(merge_sort(left), merge_sort(right))
 
 
 def quick_sort():
     pass
 
 
-a = np.random.randint(0, 1000, size=10)
-assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
-assert all(np.sort(a[1:]) == select_sort(a[1:]))
-assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
-assert all(np.sort(a[1:]) == shell_sort(a[1:]))
+def test():
+    a = np.random.randint(0, 1000, size=10)
+    assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
+    assert all(np.sort(a[1:]) == select_sort(a[1:]))
+    assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
+    assert all(np.sort(a[1:]) == shell_sort(a[1:]))
