@@ -59,6 +59,44 @@ def shell_sort(arr):
     return arr
 
 
+def getSedgewickStepArr(n):
+    """Sedgewick增量序列 最坏时间复杂度为𝑂(𝑁^(4/3))；平均时间复杂度约为𝑂(𝑁^(7/6))
+    D=9*4^i-9*2^i+1 或 4^(i+2)-3*2^(i+2)+1 , i>=0
+    稍微变一下形：D=9*(2^(2i)-2^i)+1 或 2^(2i+4)-3*2^(i+2)+1 , i>=0
+    """
+    i = 0
+    arr = []
+    while True:
+        tmp = 9 * ((1 << 2 * i) - (1 << i)) + 1
+        if tmp <= n:
+            arr.append(tmp)
+        tmp = (1 << 2 * i + 4) - 3 * (1 << i + 2) + 1
+        if tmp <= n:
+            arr.append(tmp)
+        else:
+            break
+        i += 1
+    return arr
+
+
+def shellSort(arr):
+    """希尔排序（Sedgewick增量序列）"""
+    n = len(arr)
+    # 获取Sedgewick增量序列
+    stepArr = getSedgewickStepArr(n)
+    for step in reversed(stepArr):
+        for i in range(step, n):
+            j = i
+            tmp = arr[j]
+            while j >= step:
+                if tmp < arr[j - step]:
+                    arr[j] = arr[j - step]
+                    j -= step
+                else:
+                    break
+            arr[j] = tmp
+    return arr
+
 def merge_sort():
     pass
 
