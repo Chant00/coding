@@ -121,45 +121,45 @@ def merge_sort(arr):
     return merge(merge_sort(left), merge_sort(right))
 
 
-# 快速排序，随机在数组中选择一个数，遍历分成2个组，比其大的放在右边，比其小的放左边，迭代下去
-# 终止条件:left < right，只有一个数时
-def quick_sort(arr, left, right):
-    if left < right:
-        p = partition(arr, left, right)
-        quick_sort(arr, left, p - 1)
-        quick_sort(arr, p + 1, right)
-    return arr
+def partition2(arr, left, right):
+    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1"""
+    base = arr[right]
+    i = left
+    for j in range(left, right):
+        # 两个指针，j一直向前，当遍历到比基数大的数时，i,j错位，i停下记下大数的位置，当遇到比j小数时，交换位置；i可以继续向前
+        if arr[j] <= base:  # < 或<=都行
+            arr[j], arr[i] = arr[i], arr[j]
+            i += 1
+    # 遍历结束后i的位置比基数大，交换
+    arr[i], arr[right] = arr[right], arr[i]
+    return i
 
 
-# def partition(arr,left,right):
-#         # 设置基准数
-#         base = arr[right]
-#         i = left
-#         for j in range(left,right):
-#             # 两个指针，j一直向前，当遍历到比基数大的数时，i,j错位，i停下记下大数的位置，当遇到比j小数时，交换位置；i可以继续向前
-#             if arr[j] <= base:
-#                 arr[j],arr[i] = arr[i],arr[j]
-#                 i += 1
-#             print(arr)
-#         # 遍历结束后i的位置比基数大，交换
-#         arr[i],arr[right] = arr[right],arr[i]
-#         return i
 def partition(arr, left, right):
-    # 设置基准数
+    """设置arr[left]为基准数，小于基准的就从往左边放"""
     base = arr[left]
     i = left
     for j in range(left + 1, right + 1):
         # 记i为平分点，当遍历到比base大的数后，不变化索引j继续走，比base小时，（将其和i后面一位交换，i前进一位）
-        if arr[j] < base:
-            arr[j], arr[i + 1] = arr[i + 1], arr[j]
+        if arr[j] < base:  # < 或<=都行
             i += 1
-        print(arr)
+            arr[j], arr[i] = arr[i], arr[j]
     # 遍历结束后i的位置比基数大，交换
     arr[i], arr[left] = arr[left], arr[i]
     return i
 
 
+def quick_sort(arr, left, right):
+    """算法导论和leetcode题解中的快排"""
+    if left < right:
+        p = partition2(arr, left, right)
+        quick_sort(arr, left, p - 1)
+        quick_sort(arr, p + 1, right)
+    return arr
+
+
 def quick_sort1(arr, left, right):
+    """常见的双指针快排"""
     if left >= right:
         return
     low = left
@@ -196,14 +196,16 @@ def quick_sort():
 def test():
     import numpy as np
 
-    a = np.random.randint(0, 1000, size=10)
-    assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
-    assert all(np.sort(a[1:]) == select_sort(a[1:]))
-    assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
-    assert all(np.sort(a[1:]) == shell_sort(a[1:]))
-    assert all(np.sort(a[0:]) == merge_sort(a[0:]))
-    b = list(a)
+    for _ in range(30):
+        a = np.random.randint(0, 1000, size=1000)
+        # assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
+        # assert all(np.sort(a[1:]) == select_sort(a[1:]))
+        # assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
+        # assert all(np.sort(a[1:]) == shell_sort(a[1:]))
+        # assert all(np.sort(a[0:]) == merge_sort(a[0:]))
+        assert all(np.sort(a[0:]) == quick_sort(a[0:], 0, len(a) - 1))
     """
+    b = list(a)
     %timeit merge_sort(b[0:])
     %timeit select_sort(b[0:])
     %timeit insertion_sort(b[0:])
