@@ -114,6 +114,8 @@ def merge(left, right):
 
 
 def merge_sort(arr):
+    if len(arr) < 2:
+        return arr
     mid = len(arr) // 2
     left = arr[:mid]
     right = arr[mid:]
@@ -130,3 +132,4 @@ def test():
     assert all(np.sort(a[1:]) == select_sort(a[1:]))
     assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
     assert all(np.sort(a[1:]) == shell_sort(a[1:]))
+    assert all(np.sort(a[1:]) == merge_sort(a[1:]))
