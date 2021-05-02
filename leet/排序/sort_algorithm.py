@@ -5,7 +5,6 @@ Created on 5/1/21
 
 @author: Chant
 """
-import random
 import numpy as np
 
 
@@ -114,6 +113,7 @@ def merge(left, right):
 
 
 def merge_sort(arr):
+    """归并排序O(nlog(n))"""
     if len(arr) < 2:
         return arr
     mid = len(arr) // 2
@@ -132,4 +132,4 @@ def test():
     assert all(np.sort(a[1:]) == select_sort(a[1:]))
     assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
     assert all(np.sort(a[1:]) == shell_sort(a[1:]))
-    assert all(np.sort(a[1:]) == merge_sort(a[1:]))
+    assert all(np.sort(a[0:]) == merge_sort(a[0:]))
