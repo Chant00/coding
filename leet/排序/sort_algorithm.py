@@ -5,6 +5,7 @@ Created on 5/1/21
 
 @author: Chant
 """
+import random
 
 
 def bubble_sort(arr):
@@ -158,32 +159,35 @@ def quick_sort(arr, left, right):
     return arr
 
 
-def quick_sort1(arr, left, right):
+def quick_sort1(arr, low, high):
     """常见的双指针双向奔赴快排"""
-    if left >= right:
-        return
-    low = left
-    high = right
+    if low >= high:
+        return arr
+    # 随机选取基准数，应对倒序和正序数组的最坏情况
+    rand = random.randint(low, high)
+    arr[rand], arr[low] = arr[low], arr[rand]
     base = arr[low]
-    while left < right:
-        # 和下面的顺序不能变，从右数将第一个小于基数的赋给
-        while arr[right] > base and left < right:
-            right -= 1
-        arr[left] = arr[right]
-        while arr[left] <= base and left < right:
-            left += 1
-        arr[right] = arr[left]
-    arr[left] = base
-    quick_sort1(arr, low, left - 1)
-    quick_sort1(arr, left + 1, high)
+    l, r = low, high
+    while l < r:
+        # 下面两个while的顺序不能变，必须让right先走
+        while arr[r] > base and l < r:
+            r -= 1
+        arr[l] = arr[r]
+
+        while arr[l] <= base and l < r:  # 注意<=因为上面是arr[r] > base
+            l += 1
+        arr[r] = arr[l]
+    arr[l] = base
+    quick_sort(arr, low, l - 1)
+    quick_sort(arr, l + 1, high)
     return arr
 
 
 def quick_sort2(arr):
     """超级精简版快速排序，空间占用大"""
     if len(arr) <= 1: return arr
-    return quick_sort2([lt for lt in arr[1:] if lt < arr[0]]) + arr[0:1] \
-           + quick_sort2([ge for ge in arr[1:] if ge >= arr[0]])
+    return quick_sort2([lt for lt in arr[1:] if lt < arr[0]]) + arr[:1] + \
+           quick_sort2([ge for ge in arr[1:] if ge >= arr[0]])
 
 
 def test():
@@ -195,18 +199,26 @@ def test():
     partition2(deepcopy(a), 0, len(a) - 1)
 
     for _ in range(30):
-        a = np.random.randint(0, 1000, size=1000)
-        # assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == select_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == shell_sort(a[1:]))
-        # assert all(np.sort(a[0:]) == merge_sort(a[0:]))
+        a = np.random.randint(0, 1000, size=100)
+        assert all(np.sort(deepcopy(a)) == bubble_sort(deepcopy(a)))
+        assert all(np.sort(deepcopy(a)) == select_sort(deepcopy(a)))
+        assert all(np.sort(deepcopy(a)) == insertion_sort(deepcopy(a)))
+        assert all(np.sort(deepcopy(a)) == shell_sort(deepcopy(a)))
+        assert all(np.sort(a[0:]) == merge_sort(a[0:]))
         assert all(quick_sort(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
+        assert all(quick_sort1(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
+        assert all(quick_sort2(list(a)) == np.sort(deepcopy(a)))
     """
     b = list(a)
-    %timeit merge_sort(b[0:])
-    %timeit select_sort(b[0:])
-    %timeit insertion_sort(b[0:])
-    %timeit shell_sort(b[0:])
-    %timeit quick_sort2(b[0:])
+    %timeit select_sort(list(a))
+    %timeit insertion_sort(list(a))
+    %timeit shell_sort(list(a))
+    %timeit merge_sort(list(a))
+    %timeit quick_sort(list(a), 0, len(a) - 1)
+    %timeit quick_sort1(list(a), 0, len(a) - 1)
+    %timeit quick_sort2(list(a))
+    %timeit sorted(list(a))
     """
+
+
+
