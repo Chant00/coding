@@ -249,6 +249,22 @@ def heap_sort2(arr):
     return arr
 
 
+def counting_sort(arr, max_value):
+    """计数排序"""
+    # 初始化桶，对于arr中的数字i，bucket[i]等于数字i在arr中的出现次数
+    bucket_len = max_value + 1
+    bucket = [0] * bucket_len
+    for i in arr:
+        bucket[i] += 1
+    # 填值回arr
+    idx = 0
+    for j in range(bucket_len):
+        for _ in range(bucket[j]):
+            arr[idx] = j
+            idx += 1
+    return arr
+
+
 def test():
     import numpy as np
     from copy import deepcopy
