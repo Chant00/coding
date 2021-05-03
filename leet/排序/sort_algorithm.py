@@ -4,6 +4,8 @@
 Created on 5/1/21
 
 @author: Chant
+
+快排，归并排序，每天写一次，知道写对多次
 """
 import random
 
@@ -126,7 +128,7 @@ def partition2(arr, left, right):
     """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1"""
     base = arr[right]
     i = left
-    for j in range(left, right):
+    for j in range(left, right):  # 注意，这里容易写错成range(right)
         # 两个指针，j一直向前，当遍历到比基数大的数时，i,j错位，i停下记下大数的位置，当遇到比j小数时，交换位置；i可以继续向前
         if arr[j] <= base:  # < 或<=都行
             arr[j], arr[i] = arr[i], arr[j]
@@ -140,7 +142,7 @@ def partition(arr, left, right):
     """设置arr[left]为基准数，小于基准的就从往左边放"""
     base = arr[left]
     i = left
-    for j in range(left + 1, right + 1):
+    for j in range(left + 1, right + 1):  # 注意，这里容易写错range
         # 记i为平分点，当遍历到比base大的数后，不变化索引j继续走，比base小时，（将其和i后面一位交换，i前进一位）
         if arr[j] < base:  # < 或<=都行
             i += 1
@@ -152,7 +154,7 @@ def partition(arr, left, right):
 
 def quick_sort(arr, left, right):
     """算法导论和leetcode题解中的快排"""
-    if left < right:
+    if left < right:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
         p = partition2(arr, left, right)
         quick_sort(arr, left, p - 1)
         quick_sort(arr, p + 1, right)
@@ -161,7 +163,7 @@ def quick_sort(arr, left, right):
 
 def quick_sort1(arr, low, high):
     """常见的双指针双向奔赴快排"""
-    if low >= high:
+    if low >= high:  # 这个判断return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
         return arr
     # 随机选取基准数，应对倒序和正序数组的最坏情况
     rand = random.randint(low, high)
@@ -178,8 +180,8 @@ def quick_sort1(arr, low, high):
             l += 1
         arr[r] = arr[l]
     arr[l] = base
-    quick_sort(arr, low, l - 1)
-    quick_sort(arr, l + 1, high)
+    quick_sort1(arr, low, l - 1)
+    quick_sort1(arr, l + 1, high)
     return arr
 
 
@@ -219,6 +221,3 @@ def test():
     %timeit quick_sort2(list(a))
     %timeit sorted(list(a))
     """
-
-
-
