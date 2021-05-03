@@ -192,6 +192,63 @@ def quick_sort2(arr):
            quick_sort2([ge for ge in arr[1:] if ge >= arr[0]])
 
 
+def sift_down(arr, start, end):
+    """从根节点开始，比较其与两个子节点的大小：当当前节点小于其子节点时，则将当前节点与较大的一个子节点交换位置，
+    然后继续往下比较，直到当前节点是叶子节点或者当前节点大于子节点"""
+    root, child = start, 2 * start + 1  # 初始化根节点和最大子节点，暂时将左子节点视为最大子节点
+    while child <= end:
+        # 左子节点和右子节点比较，更新最大子节点
+        if child + 1 <= end and arr[child] < arr[child + 1]:
+            child += 1
+        # 根节点小于最大子节点，交换节点值，并将root指针移动到子节点上，将child指针移动到新root的子节点上
+        if arr[root] < arr[child]:
+            arr[root], arr[child] = arr[child], arr[root]
+            root, child = child, 2 * root + 1  # 更新根节点和子节点
+        else:
+            break
+    return arr
+
+
+def heap_sort(arr):
+    """堆排序，重复从大顶堆取出数值最大的结点(把根结点和最后一个结点交换，把交换后的最后一个结点移出堆)，
+    并让残余的堆维持最大堆积性质。"""
+    # 创建大顶堆 # len(arr) - 2) // 2，因为: last_node = len(arr)-1, parent=(last_node-1)//2
+    for start in range((len(arr) - 2) // 2, -1, -1):
+        sift_down(arr, start, len(arr) - 1)
+
+    # 堆排序
+    for end in range(len(arr) - 1, 0, -1):
+        arr[0], arr[end] = arr[end], arr[0]
+        sift_down(arr, 0, end - 1)
+    return arr
+
+
+def heapify(tree, n, i):
+    if i >= n:
+        return
+    c1 = 2 * i + 1
+    c2 = 2 * i + 2
+    max_node = i
+    if c1 < n and tree[c1] > tree[max_node]:
+        max_node = c1
+    if c2 < n and tree[c2] > tree[max_node]:
+        max_node = c2
+    if max_node != i:
+        tree[max_node], tree[i] = tree[i], tree[max_node]
+        heapify(tree, n, max_node)
+
+
+def heap_sort2(arr):
+    """递归的方式实现堆排序"""
+    # len(arr) - 2) // 2，因为: last_node = len(arr)-1, parent=(last_node-1)//2
+    for start in range((len(arr) - 2) // 2, -1, -1):
+        heapify(arr, len(arr), start)
+    for end in range((len(arr) - 1), 0, -1):
+        arr[0], arr[end] = arr[end], arr[0]
+        heapify(arr, end, 0)
+    return arr
+
+
 def test():
     import numpy as np
     from copy import deepcopy
