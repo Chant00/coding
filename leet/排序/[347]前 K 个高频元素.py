@@ -41,7 +41,7 @@ from typing import List
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        """快排"""
+        """堆排序"""
         counter = collections.Counter(nums)
         heap = []
         i = 0
@@ -55,21 +55,28 @@ class Solution:
         return [i[1] for i in heap]
 
     def findTopK(self, num_cnt, k, low, high):
-        # 随机初始化pivot
         pivot = random.randint(low, high)
-        num_cnt[pivot], num_cnt[low] = num_cnt[low], num_cnt[pivot]
-        i = 0
-        if i == k - 1:
-            return [i[0] for i in num_cnt[:i + 1]]
-        elif i > k - 1:
-            i = self.findTopK(num_cnt, k, i, k - 1)
-        else:
-            i = self.findTopK(num_cnt, k, 0, i)
+        num_cnt[low], num_cnt[pivot] = num_cnt[pivot], num_cnt[low]
+        base = num_cnt[low][1]
+        i = low
 
-        return [i[0] for i in num_cnt[:i + 1]]
+        for j in range(low + 1, high + 1):
+            if num_cnt[j][1] > base:
+                # num_cnt[i + 1], num_cnt[j] = num_cnt[j], num_cnt[i + 1]
+                # i += 1
+                i += 1
+                num_cnt[i], num_cnt[j] = num_cnt[j], num_cnt[i]
+        num_cnt[low], num_cnt[i] = num_cnt[i], num_cnt[low]
+
+        if i == k - 1:
+            return num_cnt[:k]
+        elif i > k - 1:
+            return self.findTopK(num_cnt, k, low, i - 1)
+        else:
+            return self.findTopK(num_cnt, k, i + 1, high)
 
     def topKFrequent2(self, nums: List[int], k: int) -> List[int]:
-        """堆排序"""
+        """快排"""
         counter = collections.Counter(nums)
         num_cnt = list(counter.items())
         top_K = self.findTopK(num_cnt, k, 0, len(num_cnt) - 1)

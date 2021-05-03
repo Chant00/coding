@@ -48,10 +48,10 @@ class Solution:
             if bed == 0:
                 count0 += 1
             else:
-                count += (count0 - 1) // 2
-                if count > n:
-                    return True
+                count += (count0 - 1) // 2  # 注意先计算count，再将count0 = 0
                 count0 = 0
+                if count >= n:
+                    return True
         # 最后一段0区还未结算：
         count0 += 1  # 相当于右边补0
         count += (count0 - 1) // 2
@@ -62,12 +62,11 @@ class Solution:
         count = 0
         # 为了代码流程的统一，可以在数组最左边、数组最右边分别补1个0，意味着花坛左边、右边没有花。
         flowerbed = [0] + flowerbed + [0]
-        for i in range(1, len(flowerbed) - 1):
-            if flowerbed[i] == 0 and flowerbed[i - 1] == 0 \
-                    and flowerbed[i + 1] == 0:
+        for i in range(1, len(flowerbed) - 1):  # 注意，flowerbed已经加了两个0，不是最初的长度了
+            if flowerbed[i] == 0 and flowerbed[i - 1] == 0 and flowerbed[i + 1] == 0:
                 flowerbed[i] = 1
                 count += 1
-            if count >= n:
+            if count >= n:  # 注意这里的缩进，老是写错, 且必须是>=0，特殊情况n=0, 而count已经+=1大于0了
                 return True
         return False
 # leetcode submit region end(Prohibit modification and deletion)

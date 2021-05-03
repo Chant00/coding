@@ -1,10 +1,29 @@
 # coding
-### 主要是自己的刷题笔记，参考`谷歌高畅Leetcode刷题笔记`和`CyC2018/CS-Notes Leetcode 题解`，按知识分类的刷题
 
-leetcode todo:
+主要是自己的刷题笔记，参考`谷歌高畅Leetcode刷题笔记`和`CyC2018/CS-Notes Leetcode 题解`，按知识分类的刷题
+
+#### leetcode todo:
+   [15] 三数之和
+   [53]最大子序和
+   [9]回文数
 1. [146]LRU 缓存机制
+2. [569]员工薪水中位数
+3. [847]访问所有节点的最短路径
+4.   [867]转置矩阵
 
-todo:
+排序
+    快排，堆排，归并排序，桶排序
+概率
+    贝叶斯公式
+    蒲丰投针问题
+    搜狗藏手机问题
+数学
+    泰勒展开式
+    开根号，牛顿，梯度下降，二分
+
+   
+
+#### todo:
 1. 谷歌高畅Leetcode刷题笔记 动态规划
 2. CS-Notes 动态规划
 3. LeetcodeTop 各公司热门，美团、字节
@@ -19,7 +38,6 @@ todo:
 5. [BAT霜神Leetcode刷题笔记.pdf](https://pan.baidu.com/s/1LkptCKW5QK3IkB6nVnn2Zw) 提取码: 6iaq
 
 #### 算法细节资料
-1. [二分查找, 思路很简单，细节是魔鬼](https://www.zhihu.com/question/36132386/answer/712269942)
 2. 堆排序
    1. [二叉树的父子节点位置关系（学习笔记）](https://zhuanlan.zhihu.com/p/339763580)
    2. [数据结构和算法入门之小顶堆和大顶堆Python实现](https://zhuanlan.zhihu.com/p/77583063)
