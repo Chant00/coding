@@ -125,70 +125,122 @@ def merge_sort(arr):
     return merge(merge_sort(left), merge_sort(right))
 
 
-def partition(arr, left, right):
-    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1，这才是算法导论的原始版本"""
-    base = arr[right]
-    i = left
-    for j in range(left, right):  # 注意，这里容易写错成range(right)
+def hoare_partition(arr, low, high):
+    """第一版划分算法，由C.R.Hoare设计，见算法导论习题7-1。
+    双路快排，等于pivot的元素不做处理，当出现很多等于pivot的元素时，能更大概率地分布在pivot的左右，
+    不会将它们全部归到左边，导致算法复杂度退化为O(n^2)。
+    这里使用base这个临时变量，实现交换的操作，不过其实在python可以直接交换两个变量的值，直接用原版的方式就可以
+    """
+    base = arr[low]
+    l, r = low, high
+    while l < r:
+        # 下面两个while的顺序不能变，必须让right先走
+        # NOTE1 注意这里和NOTE2里的<=对应,
+        # 如果改为NOTE > 和NOTE < 则很可能死循环，如果一个是< 一个是>=则退化为和partition一样了
+        while arr[r] >= base and l < r:
+            r -= 1
+        arr[l] = arr[r]
+
+        while arr[l] <= base and l < r:  # NOTE2
+            l += 1
+        arr[r] = arr[l]
+    arr[l] = base
+    return l
+
+
+def partition(arr, low, high):
+    """设置arr[right]为基准数，小于基准的就从往左边放。代码会稍微优雅一点，没有那么多+1。算法导论的原始版本"""
+    base = arr[high]
+    i = low
+    for j in range(low, high):  # 注意，这里容易写错成range(high)
         # 两个指针，j一直向前，当遍历到比基数大的数时，i,j错位，i停下记下大数的位置，当遇到比j小数时，交换位置；i可以继续向前
         if arr[j] <= base:  # < 或<=都行
             arr[j], arr[i] = arr[i], arr[j]
             i += 1
     # 遍历结束后i的位置比基数大，交换
-    arr[i], arr[right] = arr[right], arr[i]
+    arr[i], arr[high] = arr[high], arr[i]
     return i
 
 
-def partition2(arr, left, right):
-    """设置arr[left]为基准数，小于基准的就从往左边放"""
-    base = arr[left]
-    i = left
-    for j in range(left + 1, right + 1):  # 注意，这里容易写错range
+def partition2(arr, low, high):
+    """设置arr[left]为基准数，小于基准的就从往左边放。LeetCode官方题解中常见。"""
+    base = arr[low]
+    i = low
+    for j in range(low + 1, high + 1):  # 注意，这里容易写错range
         # 记i为平分点，当遍历到比base大的数后，不变化索引j继续走，比base小时，（将其和i后面一位交换，i前进一位）
         if arr[j] < base:  # < 或<=都行
             i += 1
             arr[j], arr[i] = arr[i], arr[j]
     # 遍历结束后i的位置比基数大，交换
-    arr[i], arr[left] = arr[left], arr[i]
+    arr[i], arr[low] = arr[low], arr[i]
     return i
 
 
-def random_partition(arr, left, right):
-    rand = random.randint(left, right)
-    arr[rand], arr[left] = arr[left], arr[rand]
-    return partition(arr, left, right)
+def randomized_partition(arr, low, high):
+    """针对最坏情况（正序或倒序的，划分后刚好分为n-1个和0个元素），随机选择pivot
+    但是对于完全是同一个元素的情况，三路快排才是解决之道
+    """
+    rand = random.randint(low, high)
+    arr[rand], arr[low] = arr[low], arr[rand]
+    return partition(arr, low, high)
 
 
-def quick_sort(arr, left, right):
-    """算法导论和leetcode题解中的快排"""
-    if left < right:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        p = random_partition(arr, left, right)
-        quick_sort(arr, left, p - 1)
-        quick_sort(arr, p + 1, right)
+def quick_sort(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p = randomized_partition(arr, low, high)
+        # p = hoare_partition(arr, low, high)
+        quick_sort(arr, low, p - 1)
+        quick_sort(arr, p + 1, high)
     return arr
 
 
-def quick_sort1(arr, low, high):
-    """常见的双指针双向奔赴快排"""
-    if low >= high:  # 这个判断return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        return arr
-    # 随机选取基准数，应对倒序和正序数组的最坏情况
-    rand = random.randint(low, high)
-    arr[rand], arr[low] = arr[low], arr[rand]
+def _partition3(arr, low, high):
+    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题
+    todo: 这个写法有问题，待修正
+    """
+    p1, p2 = low, high
+    i = 0
     base = arr[low]
-    l, r = low, high
-    while l < r:
-        # 下面两个while的顺序不能变，必须让right先走
-        while arr[r] > base and l < r:
-            r -= 1
-        arr[l] = arr[r]
+    while i <= p2:
+        while i <= p2 and arr[i] > base:
+            arr[i], arr[p2] = arr[p2], arr[i]
+            p2 -= 1
+        if arr[i] < base:
+            arr[i], arr[p1] = arr[p1], arr[i]
+            p1 += 1
+        i += 1
+    return p1, p2
 
-        while arr[l] <= base and l < r:  # 注意<=因为上面是arr[r] > base
-            l += 1
-        arr[r] = arr[l]
-    arr[l] = base
-    quick_sort1(arr, low, l - 1)
-    quick_sort1(arr, l + 1, high)
+
+def partition3(nums, left, right):
+    p = nums[left]
+    lt = left  # nums[left+1...lt] < base
+    gt = right + 1  # nums[gt...right] > base
+    # i 这个变量用于遍历数组中的标定点以后的元素
+    i = left + 1  # nums[lt+1...i] == base
+    # 注意循环可以继续的条件，为什么不可以取“=”
+    while i < gt:
+        if nums[i] < p:
+            lt += 1
+            nums[i], nums[lt] = nums[lt], nums[i]
+            i += 1
+        elif nums[i] == p:
+            i += 1
+        else:
+            gt -= 1
+            nums[i], nums[gt] = nums[gt], nums[i]
+    # 想清楚，为什么交换 left 和 lt
+    nums[left], nums[lt] = nums[lt], nums[left]
+    return lt, gt
+
+
+def quick_sort3(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p1, p2 = partition3(arr, low, high)
+        quick_sort(arr, low, p1 - 1)
+        quick_sort(arr, p2, high)
     return arr
 
 
@@ -275,10 +327,14 @@ def counting_sort(arr, max_value):
 
 
 def test():
-    a = np.random.randint(0, 1000, size=1000)
+    a = np.random.randint(0, 1000, size=10)
+    quick_sort(list(a), 0, len(a) - 1)
 
     for _ in range(30):
         a = np.random.randint(0, 1000, size=100)
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+        assert quick_sort3(list(a), 0, len(a) - 1) == sorted(list(a))
+
         assert bubble_sort(list(a)) == sorted(list(a))
         assert select_sort(list(a)) == sorted(list(a))
         assert insertion_sort(list(a)) == sorted(list(a))

@@ -6,6 +6,7 @@ Created on 5/2/21
 @author: Chant
 """
 import random
+import numpy as np
 
 
 def counting_sort(arr, max_value):
@@ -46,31 +47,83 @@ def heap_sort(arr):
     return arr
 
 
+def _partition3(nums, left, right):
+    p = nums[left]
+    lt = left  # nums[left+1...lt] < base
+    gt = right + 1  # nums[gt...right] > base
+    # i 这个变量用于遍历数组中的标定点以后的元素
+    i = left + 1  # nums[lt+1...i] == base
+    # 注意循环可以继续的条件，为什么不可以取“=”
+    while i < gt:
+        if nums[i] < p:
+            lt += 1
+            nums[i], nums[lt] = nums[lt], nums[i]
+            i += 1
+        elif nums[i] == p:
+            i += 1
+        else:
+            gt -= 1
+            nums[i], nums[gt] = nums[gt], nums[i]
+    print(nums)
+    print(f'i={i}, lt:{lt}, gt:{gt}')
+    # 想清楚，为什么交换 left 和 lt
+    nums[left], nums[lt] = nums[lt], nums[left]
+    print(nums)
+    return lt, gt
+
+
+def partition3(arr, low, high):
+    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题"""
+    p1, p2 = low, high
+    i = 0
+    base = arr[low]
+    print(base)
+    while i <= p2 and p1 < p2:
+        while i <= p2 and arr[i] > base:
+            print(f'i={i}, p1:{p1}, p2:{p2}')
+            print(arr)
+            arr[i], arr[p2] = arr[p2], arr[i]
+            p2 -= 1
+
+        if arr[i] < base:
+            print(f'i={i}, p1:{p1}, p2:{p2}')
+            print(arr)
+            arr[i], arr[p1] = arr[p1], arr[i]
+            p1 += 1
+        i += 1
+
+    print(f'i={i}, p1:{p1}, p2:{p2}')
+    print(arr)
+    return p1, p2 + 1
+
+
+def quick_sort(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p1, p2 = partition3(arr, low, high)
+        quick_sort(arr, low, p1 - 1)
+        quick_sort(arr, p2, high)
+    return arr
+
+
+a = [90, 3, 6, 2, 8, 90, 11, 87, 91, 94]
+_partition3(list(a), 0, len(a) - 1)
+a = [3, 6, 2, 8, 11, 87, 90, 90, 94, 91]
+p1, p2 = partition3(a, 0, 5)
+partition3(a, p2, len(a) - 1)
+
+quick_sort(list(a), 0, len(a) - 1)
+
+
 def test():
-    import numpy as np
-    from copy import deepcopy
-
     max_value = 100
-    a = np.random.randint(0, max_value, size=20)
-
-    counting_sort(list(a), max_value)
-    heap_sort(list(a))
-    np.sort(a[0:])
+    a = np.random.randint(0, max_value, size=10)
+    quick_sort(list(a), 0, len(a) - 1)
 
     for _ in range(30):
-        max_value = 1000
-        a = np.random.randint(0, max_value, size=1000)
-        # a = sorted(a, reverse=True)
-        # a = sorted(a)
-        # assert all(np.sort(a[1:]) == bubble_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == select_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == insertion_sort(a[1:]))
-        # assert all(np.sort(a[1:]) == shell_sort(a[1:]))
-        # assert all(np.sort(a[0:]) == merge_sort(a[0:]))
-        assert all(np.sort(a[0:]) == heap_sort(a[0:]))
-        assert all(np.sort(a[0:]) == counting_sort(a[0:], max_value))
-        # assert all(quick_sort1(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
-        # assert all(quick_sort(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
+        a = np.random.randint(0, 1000, size=100)
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+
     """
     b = list(a)
     %timeit merge_sort(b[0:])
