@@ -195,15 +195,17 @@ def quick_sort2(arr):
 def sift_down(arr, start, end):
     """从根节点开始，比较其与两个子节点的大小：当当前节点小于其子节点时，则将当前节点与较大的一个子节点交换位置，
     然后继续往下比较，直到当前节点是叶子节点或者当前节点大于子节点"""
-    root, child = start, 2 * start + 1  # 初始化根节点和最大子节点，暂时将左子节点视为最大子节点
-    while child <= end:
+    parent, child = start, 2 * start + 1  # 初始化根节点和最大子节点，暂时将左子节点视为最大子节点
+    while child <= end:  # 这里的end是左闭右闭的，也可以写成左闭右开，外面传end进来时就不用-1，以及后面改为child + 1 < end
         # 左子节点和右子节点比较，更新最大子节点
         if child + 1 <= end and arr[child] < arr[child + 1]:
             child += 1
         # 根节点小于最大子节点，交换节点值，并将root指针移动到子节点上，将child指针移动到新root的子节点上
-        if arr[root] < arr[child]:
-            arr[root], arr[child] = arr[child], arr[root]
-            root, child = child, 2 * root + 1  # 更新根节点和子节点
+        if arr[parent] < arr[child]:
+            arr[parent], arr[child] = arr[child], arr[parent]
+            # root, child = child, 2 * root + 1 # 千万不能这么写，这么写child还是原来的child，并没有更新
+            parent = child  # 更新根节点和子节点
+            child = 2 * parent + 1
         else:
             break
     return arr
