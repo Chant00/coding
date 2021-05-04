@@ -126,7 +126,7 @@ def merge_sort(arr):
 
 
 def partition(arr, left, right):
-    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1，这才是算法到导论的原始版本"""
+    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1，这才是算法导论的原始版本"""
     base = arr[right]
     i = left
     for j in range(left, right):  # 注意，这里容易写错成range(right)
