@@ -7,6 +7,7 @@ Created on 5/1/21
 
 快排，归并排序，每天写一次，知道写对多次
 """
+import numpy as np
 import random
 
 
@@ -152,10 +153,16 @@ def partition(arr, left, right):
     return i
 
 
+def random_partition(arr, left, right):
+    rand = random.randint(left, right)
+    arr[rand], arr[left] = arr[left], arr[rand]
+    return partition(arr, left, right)
+
+
 def quick_sort(arr, left, right):
     """算法导论和leetcode题解中的快排"""
     if left < right:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        p = partition2(arr, left, right)
+        p = random_partition(arr, left, right)
         quick_sort(arr, left, p - 1)
         quick_sort(arr, p + 1, right)
     return arr
@@ -268,21 +275,21 @@ def counting_sort(arr, max_value):
 
 
 def test():
-    import numpy as np
-    from copy import deepcopy
-
     a = np.random.randint(0, 1000, size=1000)
 
     for _ in range(30):
         a = np.random.randint(0, 1000, size=100)
-        assert all(np.sort(deepcopy(a)) == bubble_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == select_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == insertion_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == shell_sort(deepcopy(a)))
-        assert all(np.sort(a[0:]) == merge_sort(a[0:]))
-        assert all(quick_sort(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
-        assert all(quick_sort1(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
-        assert all(quick_sort2(list(a)) == np.sort(deepcopy(a)))
+        assert bubble_sort(list(a)) == sorted(list(a))
+        assert select_sort(list(a)) == sorted(list(a))
+        assert insertion_sort(list(a)) == sorted(list(a))
+
+        assert shell_sort(list(a)) == sorted(list(a))
+
+        assert merge_sort(list(a)) == sorted(list(a))
+        assert heap_sort(list(a)) == sorted(list(a))
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+
+        assert counting_sort(list(a), max_value=1000) == sorted(list(a))
     """
     b = list(a)
     %timeit select_sort(list(a))
