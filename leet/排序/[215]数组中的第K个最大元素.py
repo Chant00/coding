@@ -24,30 +24,7 @@ from typing import List
 
 
 class Solution:
-    def sift_down(self, nums, start, end):
-        parent, child = start, 2 * start + 1
-        while child < end:
-            if child + 1 < end and nums[child + 1] > nums[child]:
-                child += 1
-            if nums[parent] < nums[child]:
-                nums[parent], nums[child] = nums[child], nums[parent]
-                parent = child
-                child = 2 * parent + 1
-            else:
-                break
-
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        """基于堆排"""
-        for start in range((len(nums) - 2) // 2, -1, -1):
-            self.sift_down(nums, start, len(nums))
-        # 执行k-1次删除操作，则第K大的数字此时正好在堆顶
-        for end in range(len(nums) - 1, len(nums) - k, -1):
-            nums[0], nums[end] = nums[end], nums[0]
-            self.sift_down(nums, 0, end)
-        return nums[0]
-
     def findKth(self, nums, k, low, high):
-        """基于快排"""
         rand = random.randint(low, high)
         nums[rand], nums[low] = nums[low], nums[rand]
 
@@ -68,8 +45,30 @@ class Solution:
         else:
             return self.findKth(nums, k, low, l - 1)
 
-    def findKthLargest1(self, nums: List[int], k: int) -> int:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        """基于快排O(n)"""
         i = self.findKth(nums, k, 0, len(nums) - 1)
         return nums[i]
 
+    def sift_down(self, nums, start, end):
+        parent, child = start, 2 * start + 1
+        while child < end:
+            if child + 1 < end and nums[child + 1] > nums[child]:
+                child += 1
+            if nums[parent] < nums[child]:
+                nums[parent], nums[child] = nums[child], nums[parent]
+                parent = child
+                child = 2 * parent + 1
+            else:
+                break
+
+    def findKthLargest2(self, nums: List[int], k: int) -> int:
+        """基于堆排O(n*log(n))"""
+        for start in range((len(nums) - 2) // 2, -1, -1):
+            self.sift_down(nums, start, len(nums))
+        # 执行k-1次删除操作，则第K大的数字此时正好在堆顶
+        for end in range(len(nums) - 1, len(nums) - k, -1):
+            nums[0], nums[end] = nums[end], nums[0]
+            self.sift_down(nums, 0, end)
+        return nums[0]
 # leetcode submit region end(Prohibit modification and deletion)
