@@ -305,4 +305,5 @@ def test():
     %timeit quick_sort(list(a), 0, len(a) - 1)
     %timeit counting_sort(list(a), 1000)
     %timeit heap_sort(list(a))
+    %timeit heap_sort2(list(a))
     """
