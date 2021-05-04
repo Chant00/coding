@@ -271,9 +271,7 @@ def test():
     import numpy as np
     from copy import deepcopy
 
-    a = np.random.randint(0, 1000, size=10)
-    partition(deepcopy(a), 0, len(a) - 1)
-    partition2(deepcopy(a), 0, len(a) - 1)
+    a = np.random.randint(0, 1000, size=1000)
 
     for _ in range(30):
         a = np.random.randint(0, 1000, size=100)
@@ -295,4 +293,9 @@ def test():
     %timeit quick_sort1(list(a), 0, len(a) - 1)
     %timeit quick_sort2(list(a))
     %timeit sorted(list(a))
+    
+    %timeit merge_sort(list(a))
+    %timeit quick_sort(list(a), 0, len(a) - 1)
+    %timeit counting_sort(list(a), 1000)
+    %timeit heap_sort(list(a))
     """
