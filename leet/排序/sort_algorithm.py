@@ -125,8 +125,8 @@ def merge_sort(arr):
     return merge(merge_sort(left), merge_sort(right))
 
 
-def partition2(arr, left, right):
-    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1"""
+def partition(arr, left, right):
+    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1，这才是算法到导论的原始版本"""
     base = arr[right]
     i = left
     for j in range(left, right):  # 注意，这里容易写错成range(right)
@@ -139,7 +139,7 @@ def partition2(arr, left, right):
     return i
 
 
-def partition(arr, left, right):
+def partition2(arr, left, right):
     """设置arr[left]为基准数，小于基准的就从往左边放"""
     base = arr[left]
     i = left
