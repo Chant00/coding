@@ -200,7 +200,7 @@ def _partition3(arr, low, high):
     todo: 这个写法有问题，待修正
     """
     p1, p2 = low, high
-    i = 0
+    i = low  # 注意这里，总是写错成i=0！！！所有的这种都是经常将边界写成0或者len(arr)-1, 但是这里是low和high是会在递归中变化的
     base = arr[low]
     while i <= p2:
         while i <= p2 and arr[i] > base:
@@ -210,7 +210,7 @@ def _partition3(arr, low, high):
             arr[i], arr[p1] = arr[p1], arr[i]
             p1 += 1
         i += 1
-    return p1, p2
+    return p1, p2 + 1
 
 
 def partition3(nums, left, right):
@@ -238,9 +238,9 @@ def partition3(nums, left, right):
 def quick_sort3(arr, low, high):
     """快速排序"""
     if low < high:  # 这个判断和最后的return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        p1, p2 = partition3(arr, low, high)
-        quick_sort(arr, low, p1 - 1)
-        quick_sort(arr, p2, high)
+        p1, p2 = _partition3(arr, low, high)
+        quick_sort3(arr, low, p1 - 1)
+        quick_sort3(arr, p2, high)
     return arr
 
 
@@ -329,12 +329,18 @@ def counting_sort(arr, max_value):
 def test():
     a = np.random.randint(0, 1000, size=10)
     quick_sort(list(a), 0, len(a) - 1)
+    quick_sort3(list(a), 0, len(a) - 1)
+    a = [219, 353, 20, 439, 15, 154, 435, 630, 178, 974]
+    a = [1, 2, 1, 0, 0, 0, 0, 1, 2, 2, 2, 1, 1, 1]
     partition3(a, 0, len(a) - 1)
+    a = [219, 353, 20, 439, 15, 154, 435, 630, 178, 974]
+    _partition3(a, 0, len(a) - 1)
 
     for _ in range(30):
-        a = np.random.randint(0, 1000, size=100)
-        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+        a = np.random.randint(0, 1000, size=1000)
+        # assert partition3(list(a), 0, len(a) - 1) == _partition3(list(a), 0, len(a) - 1)
         assert quick_sort3(list(a), 0, len(a) - 1) == sorted(list(a))
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
 
         assert bubble_sort(list(a)) == sorted(list(a))
         assert select_sort(list(a)) == sorted(list(a))
