@@ -237,7 +237,7 @@ def partition3(nums, left, right):
 
 def quick_sort3(arr, low, high):
     """快速排序"""
-    if low < high:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+    if low < high:  # 这个判断和最后的return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
         p1, p2 = partition3(arr, low, high)
         quick_sort(arr, low, p1 - 1)
         quick_sort(arr, p2, high)
