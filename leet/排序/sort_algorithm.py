@@ -7,6 +7,7 @@ Created on 5/1/21
 
 快排，归并排序，每天写一次，知道写对多次
 """
+import numpy as np
 import random
 
 
@@ -124,64 +125,122 @@ def merge_sort(arr):
     return merge(merge_sort(left), merge_sort(right))
 
 
-def partition2(arr, left, right):
-    """设置arr[right]为基准数，代码会稍微优雅一点，没有那么多+1"""
-    base = arr[right]
-    i = left
-    for j in range(left, right):  # 注意，这里容易写错成range(right)
+def hoare_partition(arr, low, high):
+    """第一版划分算法，由C.R.Hoare设计，见算法导论习题7-1。
+    双路快排，等于pivot的元素不做处理，当出现很多等于pivot的元素时，能更大概率地分布在pivot的左右，
+    不会将它们全部归到左边，导致算法复杂度退化为O(n^2)。
+    这里使用base这个临时变量，实现交换的操作，不过其实在python可以直接交换两个变量的值，直接用原版的方式就可以
+    """
+    base = arr[low]
+    l, r = low, high
+    while l < r:
+        # 下面两个while的顺序不能变，必须让right先走
+        # NOTE1 注意这里和NOTE2里的<=对应,
+        # 如果改为NOTE > 和NOTE < 则很可能死循环，如果一个是< 一个是>=则退化为和partition一样了
+        while arr[r] >= base and l < r:
+            r -= 1
+        arr[l] = arr[r]
+
+        while arr[l] <= base and l < r:  # NOTE2
+            l += 1
+        arr[r] = arr[l]
+    arr[l] = base
+    return l
+
+
+def partition(arr, low, high):
+    """设置arr[right]为基准数，小于基准的就从往左边放。代码会稍微优雅一点，没有那么多+1。算法导论的原始版本"""
+    base = arr[high]
+    i = low
+    for j in range(low, high):  # 注意，这里容易写错成range(high)
         # 两个指针，j一直向前，当遍历到比基数大的数时，i,j错位，i停下记下大数的位置，当遇到比j小数时，交换位置；i可以继续向前
         if arr[j] <= base:  # < 或<=都行
             arr[j], arr[i] = arr[i], arr[j]
             i += 1
     # 遍历结束后i的位置比基数大，交换
-    arr[i], arr[right] = arr[right], arr[i]
+    arr[i], arr[high] = arr[high], arr[i]
     return i
 
 
-def partition(arr, left, right):
-    """设置arr[left]为基准数，小于基准的就从往左边放"""
-    base = arr[left]
-    i = left
-    for j in range(left + 1, right + 1):  # 注意，这里容易写错range
+def partition2(arr, low, high):
+    """设置arr[left]为基准数，小于基准的就从往左边放。LeetCode官方题解中常见。"""
+    base = arr[low]
+    i = low
+    for j in range(low + 1, high + 1):  # 注意，这里容易写错range
         # 记i为平分点，当遍历到比base大的数后，不变化索引j继续走，比base小时，（将其和i后面一位交换，i前进一位）
         if arr[j] < base:  # < 或<=都行
             i += 1
             arr[j], arr[i] = arr[i], arr[j]
     # 遍历结束后i的位置比基数大，交换
-    arr[i], arr[left] = arr[left], arr[i]
+    arr[i], arr[low] = arr[low], arr[i]
     return i
 
 
-def quick_sort(arr, left, right):
-    """算法导论和leetcode题解中的快排"""
-    if left < right:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        p = partition2(arr, left, right)
-        quick_sort(arr, left, p - 1)
-        quick_sort(arr, p + 1, right)
+def randomized_partition(arr, low, high):
+    """针对最坏情况（正序或倒序的，划分后刚好分为n-1个和0个元素），随机选择pivot
+    但是对于完全是同一个元素的情况，三路快排才是解决之道
+    """
+    rand = random.randint(low, high)
+    arr[rand], arr[low] = arr[low], arr[rand]
+    return partition(arr, low, high)
+
+
+def quick_sort(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p = randomized_partition(arr, low, high)
+        # p = hoare_partition(arr, low, high)
+        quick_sort(arr, low, p - 1)
+        quick_sort(arr, p + 1, high)
     return arr
 
 
-def quick_sort1(arr, low, high):
-    """常见的双指针双向奔赴快排"""
-    if low >= high:  # 这个判断return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
-        return arr
-    # 随机选取基准数，应对倒序和正序数组的最坏情况
-    rand = random.randint(low, high)
-    arr[rand], arr[low] = arr[low], arr[rand]
+def _partition3(arr, low, high):
+    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题
+    todo: 这个写法有问题，待修正
+    """
+    p1, p2 = low, high
+    i = low  # 注意这里，总是写错成i=0！！！所有的这种都是经常将边界写成0或者len(arr)-1, 但是这里是low和high是会在递归中变化的
     base = arr[low]
-    l, r = low, high
-    while l < r:
-        # 下面两个while的顺序不能变，必须让right先走
-        while arr[r] > base and l < r:
-            r -= 1
-        arr[l] = arr[r]
+    while i <= p2:
+        while i <= p2 and arr[i] > base:
+            arr[i], arr[p2] = arr[p2], arr[i]
+            p2 -= 1
+        if arr[i] < base:
+            arr[i], arr[p1] = arr[p1], arr[i]
+            p1 += 1
+        i += 1
+    return p1, p2 + 1
 
-        while arr[l] <= base and l < r:  # 注意<=因为上面是arr[r] > base
-            l += 1
-        arr[r] = arr[l]
-    arr[l] = base
-    quick_sort1(arr, low, l - 1)
-    quick_sort1(arr, l + 1, high)
+
+def partition3(nums, left, right):
+    p = nums[left]
+    lt = left  # nums[left+1...lt] < base
+    gt = right + 1  # nums[gt...right] > base
+    # i 这个变量用于遍历数组中的标定点以后的元素
+    i = left + 1  # nums[lt+1...i] == base
+    # 注意循环可以继续的条件，为什么不可以取“=”
+    while i < gt:
+        if nums[i] < p:
+            lt += 1
+            nums[i], nums[lt] = nums[lt], nums[i]
+            i += 1
+        elif nums[i] == p:
+            i += 1
+        else:
+            gt -= 1
+            nums[i], nums[gt] = nums[gt], nums[i]
+    # 想清楚，为什么交换 left 和 lt, 以为nums[left]是base，需要放到中间那部分里
+    nums[left], nums[lt] = nums[lt], nums[left]
+    return lt, gt
+
+
+def quick_sort3(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断和最后的return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p1, p2 = _partition3(arr, low, high)
+        quick_sort3(arr, low, p1 - 1)
+        quick_sort3(arr, p2, high)
     return arr
 
 
@@ -195,15 +254,17 @@ def quick_sort2(arr):
 def sift_down(arr, start, end):
     """从根节点开始，比较其与两个子节点的大小：当当前节点小于其子节点时，则将当前节点与较大的一个子节点交换位置，
     然后继续往下比较，直到当前节点是叶子节点或者当前节点大于子节点"""
-    root, child = start, 2 * start + 1  # 初始化根节点和最大子节点，暂时将左子节点视为最大子节点
-    while child <= end:
+    parent, child = start, 2 * start + 1  # 初始化根节点和最大子节点，暂时将左子节点视为最大子节点
+    while child <= end:  # 这里的end是左闭右闭的，也可以写成左闭右开，外面传end进来时就不用-1，以及后面改为child + 1 < end
         # 左子节点和右子节点比较，更新最大子节点
         if child + 1 <= end and arr[child] < arr[child + 1]:
             child += 1
         # 根节点小于最大子节点，交换节点值，并将root指针移动到子节点上，将child指针移动到新root的子节点上
-        if arr[root] < arr[child]:
-            arr[root], arr[child] = arr[child], arr[root]
-            root, child = child, 2 * root + 1  # 更新根节点和子节点
+        if arr[parent] < arr[child]:
+            arr[parent], arr[child] = arr[child], arr[parent]
+            # root, child = child, 2 * root + 1 # 千万不能这么写，这么写child还是原来的child，并没有更新
+            parent = child  # 更新根节点和子节点
+            child = 2 * parent + 1
         else:
             break
     return arr
@@ -266,23 +327,32 @@ def counting_sort(arr, max_value):
 
 
 def test():
-    import numpy as np
-    from copy import deepcopy
-
     a = np.random.randint(0, 1000, size=10)
-    partition(deepcopy(a), 0, len(a) - 1)
-    partition2(deepcopy(a), 0, len(a) - 1)
+    quick_sort(list(a), 0, len(a) - 1)
+    quick_sort3(list(a), 0, len(a) - 1)
+    a = [219, 353, 20, 439, 15, 154, 435, 630, 178, 974]
+    a = [1, 2, 1, 0, 0, 0, 0, 1, 2, 2, 2, 1, 1, 1]
+    partition3(a, 0, len(a) - 1)
+    a = [219, 353, 20, 439, 15, 154, 435, 630, 178, 974]
+    _partition3(a, 0, len(a) - 1)
 
     for _ in range(30):
-        a = np.random.randint(0, 1000, size=100)
-        assert all(np.sort(deepcopy(a)) == bubble_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == select_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == insertion_sort(deepcopy(a)))
-        assert all(np.sort(deepcopy(a)) == shell_sort(deepcopy(a)))
-        assert all(np.sort(a[0:]) == merge_sort(a[0:]))
-        assert all(quick_sort(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
-        assert all(quick_sort1(deepcopy(a), 0, len(a) - 1) == np.sort(deepcopy(a)))
-        assert all(quick_sort2(list(a)) == np.sort(deepcopy(a)))
+        a = np.random.randint(0, 1000, size=1000)
+        # assert partition3(list(a), 0, len(a) - 1) == _partition3(list(a), 0, len(a) - 1)
+        assert quick_sort3(list(a), 0, len(a) - 1) == sorted(list(a))
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+
+        assert bubble_sort(list(a)) == sorted(list(a))
+        assert select_sort(list(a)) == sorted(list(a))
+        assert insertion_sort(list(a)) == sorted(list(a))
+
+        assert shell_sort(list(a)) == sorted(list(a))
+
+        assert merge_sort(list(a)) == sorted(list(a))
+        assert heap_sort(list(a)) == sorted(list(a))
+        assert quick_sort(list(a), 0, len(a) - 1) == sorted(list(a))
+
+        assert counting_sort(list(a), max_value=1000) == sorted(list(a))
     """
     b = list(a)
     %timeit select_sort(list(a))
@@ -293,4 +363,10 @@ def test():
     %timeit quick_sort1(list(a), 0, len(a) - 1)
     %timeit quick_sort2(list(a))
     %timeit sorted(list(a))
+    
+    %timeit merge_sort(list(a))
+    %timeit quick_sort(list(a), 0, len(a) - 1)
+    %timeit counting_sort(list(a), 1000)
+    %timeit heap_sort(list(a))
+    %timeit heap_sort2(list(a))
     """
