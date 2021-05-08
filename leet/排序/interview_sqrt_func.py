@@ -114,7 +114,7 @@ def newton_sqrt(n, threshold=0.0001):
     return x
 
 
-def newton_sqrt_2(n, threshold=0.0001):
+def newton_sqrt2(n, threshold=0.0001):
     """使用二阶泰勒展开式g(x)，即：用二次曲线逼近，求此二次曲线g(x)的最小值，也就是g'(x)=0的解
     原理来自：https://wenku.baidu.com/view/c09a2510f18583d0496459aa.html
     牛顿法求平方根 https://www.zhihu.com/question/20690553
