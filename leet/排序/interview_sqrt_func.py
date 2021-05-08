@@ -8,6 +8,24 @@ Created on 2018/5/4
 """
 import math
 from math import sqrt
+import random
+
+
+def get_pai(n=1000 * 1000):
+    hits = 0
+    for i in range(n):
+        x, y = random.random(), random.random()
+        if sqrt(x ** 2 + y ** 2) <= 1:
+            hits += 1
+    pi = 4 * (hits / n)
+    return pi
+
+
+def get_pai2(n=100):
+    pi = 0
+    for i in range(n):
+        pi += 1 / pow(16, i) * (4 / (8 * i + 1) - 2 / (8 * i + 4) - 1 / (8 * i + 5) - 1 / (8 * i + 6))
+    return pi
 
 
 def sqrt_bi(n):
