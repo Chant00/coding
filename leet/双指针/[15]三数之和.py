@@ -76,17 +76,18 @@ class Solution:
     def threeSum1(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         n = len(nums)
-        ans = []
+        ret = []
         for i in range(n):
             if nums[i] > 0:  # 若 nums[i]>0：因为已经排序好，所以后面不可能有三个数加和等于 0，直接返回结果
-                return ans
-            # 重复元素跳过
-            if i > 0 and nums[i] == nums[i - 1]:
+                return ret
+            if i > 0 and nums[i] == nums[i - 1]:  # 重复元素跳过
                 continue
             l, r = i + 1, n - 1
+            target = -nums[i]
             while l < r:
-                if nums[i] + nums[l] + nums[r] == 0:
-                    ans.append([nums[i], nums[l], nums[r]])
+                if nums[l] + nums[r] == target:
+                    ret.append([nums[i], nums[l], nums[r]])
+                    # 找到一组后还要继续找，并不是只有唯一解
                     while l < r and nums[l] == nums[l + 1]:  # 重复元素跳过
                         l += 1
                     # 右边的重复元素其实不用跳过也行，因为左边那个唯一符合的值跳过了，就不会有符合l了，也不会有重复的添加到ans里了
@@ -94,9 +95,9 @@ class Solution:
                     #     r -= 1
                     l += 1
                     r -= 1
-                elif nums[i] + nums[l] + nums[r] > 0:
+                elif nums[l] + nums[r] > target:
                     r -= 1
                 else:
                     l += 1
-        return ans
+        return ret
 # leetcode submit region end(Prohibit modification and deletion)
