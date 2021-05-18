@@ -49,7 +49,7 @@ class Solution:
         next：永远指向 curr 的下一个节点，循环过程中，curr 变化以后 next 会变化；
         pre：永远指向待反转区域的第一个节点 left 的前一个节点，在循环过程中不变。
         """
-        dummy_node = ListNode(-1, head)  # 设置 dummyNode 是这一类问题的一般做法
+        dummy_node = ListNode(-1, head)  # 设置 dummyNode 是这一类问题的一般做法。能自然地处理left=1的情况
         pre = dummy_node
         for _ in range(left - 1):
             pre = pre.next
