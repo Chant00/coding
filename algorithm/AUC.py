@@ -32,7 +32,9 @@ def auc1(label, pre):
 def auc2(labels, pre):
     """方法二，排序后按照公式计算，预测值相同时，rank值取平均。
     使用窗口统计预测值相同时的情况，并计算平均值。复杂度：O(M+N)
-    边界条件，其实是窗口需要加上
+    需要注意的点：
+        1. 窗口需要加上上一个样本，且上一个样本为正样本时其rank值会被多加一次，所以需要减一次
+        2. 连续和非连续窗口的情况
     """
     pos, neg, rank_sum = 0, 0, 0
     pairs = sorted(zip(labels, pre), key=lambda x: x[1])
@@ -61,7 +63,7 @@ def auc2(labels, pre):
                 rank_sum += window_pos * window_rank_sum / window_size
                 # 清空窗口
                 window_rank_sum, window_size, window_pos = 0, 0, 0
-
+            # 只要score != prev_score就加一次rank，以应对连续窗口的情况
             if label == 1:
                 rank_sum += rank
             prev_score, prev_label, prev_rank = score, label, rank
