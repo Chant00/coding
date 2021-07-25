@@ -38,6 +38,15 @@ from typing import List
 
 
 class Solution:
+    def minPathSum2(self, grid: List[List[int]]) -> int:
+        """官解评论中简洁写法"""
+        dp = [float('inf')] * (len(grid[0]) + 1)
+        dp[1] = 0
+        for row in grid:
+            for idx, num in enumerate(row):
+                dp[idx + 1] = min(dp[idx], dp[idx + 1]) + num
+        return dp[-1]
+
     def minPathSum(self, grid: List[List[int]]) -> int:
         """动态规划O(m*n)+空间压缩。因为 dp 矩阵的每一个值只和左边和上面的值相关，我们可以使用空间压缩将 dp 数组压缩为 一维。
         对于第 i 行，在遍历到第 j 列的时候，因为第 j-1 列已经更新过了，所以 dp[j-1] 代表 dp[i][j-1] 的值；
