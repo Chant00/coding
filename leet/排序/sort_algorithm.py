@@ -181,7 +181,8 @@ def randomized_partition(arr, low, high):
     但是对于完全是同一个元素的情况，三路快排才是解决之道
     """
     rand = random.randint(low, high)
-    arr[rand], arr[low] = arr[low], arr[rand]
+    # arr[rand], arr[low] = arr[low], arr[rand]
+    arr[rand], arr[high] = arr[high], arr[rand]
     return partition(arr, low, high)
 
 
@@ -196,14 +197,12 @@ def quick_sort(arr, low, high):
 
 
 def _partition3(arr, low, high):
-    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题
-    todo: 这个写法有问题，待修正
-    """
+    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题"""
     p1, p2 = low, high
     i = low  # 注意这里，总是写错成i=0！！！所有的这种都是经常将边界写成0或者len(arr)-1, 但是这里是low和high是会在递归中变化的
     base = arr[low]
     while i <= p2:
-        while i <= p2 and arr[i] > base:
+        while i <= p2 and arr[i] > base:  # 注意这里要用while而非if，因为此时可能arr[p2]> base，所以交换后依旧arr[i] > base，需要让p2前进继续交换
             arr[i], arr[p2] = arr[p2], arr[i]
             p2 -= 1
         if arr[i] < base:
