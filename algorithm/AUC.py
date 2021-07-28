@@ -36,7 +36,7 @@ def auc2(labels, pre):
         1. 窗口需要加上上一个样本，且上一个样本为正样本时其rank值会被多加一次，所以需要减一次
         2. 连续和非连续窗口的情况
     """
-    pos, neg, rank_sum = 0, 0, 0
+    pos, neg, pos_rank_sum = 0, 0, 0
     pairs = sorted(zip(labels, pre), key=lambda x: x[1])
     pairs.append((0, -1))  # 添加哑变量，多加了一个负样本，后面neg-=1，目的是多迭代一次，最后一次窗口计算一下，否则就需要赋值粘贴代码手动多迭代一次
     prev_score, prev_label, prev_rank = -1, 0, 0  # prev_score预设为-1，rank==1时，就能自动跳过窗口操作
@@ -56,19 +56,19 @@ def auc2(labels, pre):
             if window_size > 0:
                 # 窗口中需要添加prev样本
                 if prev_label == 1:
-                    rank_sum -= prev_rank  # rank_sum中移除prev_rank，后面会在窗口中加上取平均后的rank
+                    pos_rank_sum -= prev_rank  # rank_sum中移除prev_rank，后面会在窗口中加上取平均后的rank
                     window_pos += 1
                 window_rank_sum += prev_rank
                 window_size += 1
-                rank_sum += window_pos * window_rank_sum / window_size
+                pos_rank_sum += window_pos * window_rank_sum / window_size
                 # 清空窗口
                 window_rank_sum, window_size, window_pos = 0, 0, 0
             # 只要score != prev_score就加一次rank，以应对连续窗口的情况
             if label == 1:
-                rank_sum += rank
+                pos_rank_sum += rank
             prev_score, prev_label, prev_rank = score, label, rank
 
-    return (rank_sum - pos * (1 + pos) / 2) / (pos * (neg - 1))
+    return (pos_rank_sum - pos * (1 + pos) / 2) / (pos * (neg - 1))
 
 
 def getAuc(labels, pre):
