@@ -41,7 +41,7 @@ class Solution:
     def minPathSum2(self, grid: List[List[int]]) -> int:
         """官解评论中简洁写法"""
         dp = [float('inf')] * (len(grid[0]) + 1)
-        dp[1] = 0
+        dp[1] = 0  # 注意这一行别漏了，初始化第一次
         for row in grid:
             for idx, num in enumerate(row):
                 dp[idx + 1] = min(dp[idx], dp[idx + 1]) + num
