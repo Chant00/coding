@@ -19,7 +19,16 @@ def loss(h, y):
 
 
 def gradient(X, h, y):
-    """损失函数对w求偏导"""
+    """损失函数对w求偏导
+    h'(x)=h(x)(1-h(x))  h(x)代表sigmoid函数
+    h = h(wx) h代表预测值
+
+    loss = -y*log(h(wx)) - (1-y)log(1-h(wx))
+    loss'(w) = -y*h'(w)/h(wx) - (1-y)*(-h'(w))/(1-h(wx))
+             = -y*(h(1-h)*x)/h - (1-y)*(-h(1-h)*x)/(1-h)
+             = x[-y(1-h) + (1-y)h]
+             = x(h-y)
+    """
     return np.dot(X.T, (h - y)) / y.shape[0]
 
 
