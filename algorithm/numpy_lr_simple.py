@@ -6,7 +6,6 @@ Created on 2021-07-27
 @author: Chant
 """
 import numpy as np
-import numpy as np
 from sklearn import datasets
 from sklearn.linear_model import LogisticRegression
 
