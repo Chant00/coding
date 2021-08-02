@@ -38,6 +38,28 @@ class TreeNode:
 
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        """官方解法，BFS改为层序遍历，使用队列"""
+        res = []
+        queue = [root] if root else []
+        flag = True
+        while queue:
+            size = len(queue)
+            level = []
+            for i in range(size):
+                node = queue.pop(0)
+                level.append(node.val)
+                if node.left is not None:
+                    queue.append(node.left)
+                if node.right is not None:
+                    queue.append(node.right)
+            if flag:
+                res.append(level)
+            else:
+                res.append(level[::-1])
+            flag = not flag
+        return res
+
+    def zigzagLevelOrder1(self, root: TreeNode) -> List[List[int]]:
         """我自己的思路"""
         if root is None:
             return []
