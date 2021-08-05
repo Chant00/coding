@@ -77,7 +77,7 @@ class MyLr:
 
     def loss(self, y, ym):
         result = -1 / len(y) * (
-                    np.dot(y, np.log(ym).T) + np.dot(1 - y, np.log(1 - ym).T))
+                np.dot(y, np.log(ym).T) + np.dot(1 - y, np.log(1 - ym).T))
         return result
 
     def gd(self, X, Y, W, b):
@@ -241,9 +241,9 @@ class MyLr:
                 correct_Sdb = Sdb / (1 - self.beta2 ** (i + 1))
 
                 W = W - self.alpha * (
-                            correct_Vdw / (np.sqrt(correct_Sdw) + self.epsilon))
+                        correct_Vdw / (np.sqrt(correct_Sdw) + self.epsilon))
                 b = b - self.alpha * (
-                            correct_Vdb / (np.sqrt(correct_Sdb) + self.epsilon))
+                        correct_Vdb / (np.sqrt(correct_Sdb) + self.epsilon))
                 A.extend(a.ravel())
             if self.print_loss:
                 print(i, k, self.loss(Y, np.array(A)))
@@ -312,6 +312,6 @@ for item in list(Y[50:100]):
     Y2.append(0)
 # 固定随机种子，比较各梯度下降算法
 np.random.seed(1)
-model = MyLr(method='Adam', alpha=0.1, epoch=100, batch=32, print_loss=False)
+model = MyLr(method='gb', alpha=0.1, epoch=100, batch=32, print_loss=False)
 model.lr_fit(X, np.array(Y2))
 print(model.method, model.score(X, Y2, print_error=False))
