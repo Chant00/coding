@@ -18,6 +18,7 @@ def remove_sub(alpha, beta):
             alpha = alpha[:l] + alpha[l + n:]
             m -= n
         # 注意这里的两个if的层级
+        # 以及这里,l作为右边界，需要l+1
         if l - n + 1 >= 0 and alpha[l - n + 1:l + 1] == beta:
             alpha = alpha[:l - n + 1] + alpha[l + 1:]
             m -= n
