@@ -54,5 +54,10 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
+        """log3MaxInt=2**32/2-1
+        3^{log3MaxInt}=3^{19.56}=3^{19}=1162261467
+        因为3是质数，所以3^{19}的除数只有 3^0，3^1, …3^{19}，因此我们只需要将 3^{19}除以 n。
+        若余数为 0 意味着 n 是 3^{19}的除数，因此是 3 的幂
+        """
         return n > 0 and 1162261467 % n == 0
 # leetcode submit region end(Prohibit modification and deletion)
