@@ -22,3 +22,23 @@ def max_multiply(nums):
 
 
 print(max_multiply([3, 4, 1, 0, 4]))
+
+
+def max_num(arr):
+    """
+    [1,3,7,5,2]
+    """
+    n = len(arr)
+    arr = [float('-inf')] + arr + [float('-inf')]
+    l, r = 1, n - 1
+    while l < r:
+        mid = (l + r) // 2
+        if arr[mid - 1] < arr[mid] < arr[mid + 1]:
+            return arr[mid + 1]
+        elif arr[mid] > arr[mid - 1]:
+            l = mid + 1
+        else:
+            r = mid
+
+
+print(max_num([1, 3, 7, 5, 2]))
