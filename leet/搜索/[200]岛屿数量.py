@@ -88,7 +88,7 @@ class Solution:
         count = 0
         for i in range(nr):
             for j in range(nc):
-                if grid[i][j] == '1':
+                if grid[i][j] == '1':  # 这里这一行必不可少，如果是求最大岛屿面积，这一行则可以去掉
                     dfs(i, j)
                     count += 1
         return count
