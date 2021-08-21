@@ -66,8 +66,7 @@ class Solution:
 
         for i in range(nr):
             for j in range(nc):
-                if grid[i][j] == 1:
-                    max_area = max(max_area, bfs(i, j))
+                max_area = max(max_area, bfs(i, j))
         return max_area
 
     def maxAreaOfIsland2(self, grid: List[List[int]]) -> int:
