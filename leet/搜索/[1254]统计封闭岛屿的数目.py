@@ -51,6 +51,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def closedIsland(self, grid: List[List[int]]) -> int:
         """与岛屿数量类似，区别在于，遇到边界的时候岛屿数量不再+1"""
