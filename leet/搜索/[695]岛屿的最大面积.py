@@ -36,6 +36,7 @@
 
 # leetcode submit region begin(Prohibit modification and deletion)
 from typing import List
+from collections import deque
 
 
 class Solution:
@@ -49,7 +50,7 @@ class Solution:
     一是因为便于理解，二是更不易出现递归栈满的情况。我们先展示使用栈的 写法。
     """
 
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+    def maxAreaOfIsland3(self, grid: List[List[int]]) -> int:
         """队列，广度优先。 如果改为深度优先，只需要改一个pop(0)改为pop()即可。时间和空间复杂度都是O(R×C)"""
         max_area = 0
         nr, nc = len(grid), len(grid[0])
@@ -57,9 +58,12 @@ class Solution:
         def bfs(r, c):
             """放到外面，需要传grid,nr,nc,或者只传grid，然后len(grid), len(grid[0])取nr,nc太麻烦了"""
             ans = 0
-            queue = [[r, c]]
+            # queue = [[r, c]]
+            queue = deque([[r, c]])
             while queue:
-                r, c = queue.pop(0)  # 队列，则用pop(0)，先进先出。栈的话，先进后出，用pop。
+                # r, c = queue.pop(0)  # 队列，则用pop(0)，先进先出。栈的话，先进后出，用pop。
+                #  # 使用pop(0)会非常耗时，所以最好是用真正的队列deque 双边队列，可以左右pop和append
+                r, c = queue.popleft()
                 if 0 <= r < nr and 0 <= c < nc and grid[r][c] == 1:
                     grid[r][c] = 0
                     ans += 1
@@ -71,7 +75,7 @@ class Solution:
                 max_area = max(max_area, bfs(i, j))
         return max_area
 
-    def maxAreaOfIsland2(self, grid: List[List[int]]) -> int:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         """栈，深度优先。时间和空间复杂度都是O(R×C)"""
         max_area = 0
         nr, nc = len(grid), len(grid[0])
