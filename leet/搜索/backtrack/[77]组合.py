@@ -42,13 +42,18 @@ from typing import List
 
 class Solution:
     def backtrack(self, n, k, comb, ans, pos):
+        """
+        视频讲解 https://www.bilibili.com/video/BV1wi4y157er/?spm_id_from=333.788.recommend_more_video.-1
+        有讲解range(pos, n + 1)
+        以及剪枝range(pos, n - (k - len(comb)) + 2)
+        """
         if len(comb) == k:
             ans.append(comb[:])
             return
         # for i in range(1, n + 1):  # 这样写的话，会重复一遍，比如[1,4]和[4,1]这种重复
-        for i in range(pos, n + 1):  # 从1开始到n，所以注意是n+1
+        # for i in range(pos, n + 1):  # 从1开始到n，所以注意是n+1
+        for i in range(pos, n - (k - len(comb)) + 2):  # 剪枝
             comb.append(i)
-            # print(comb)
             self.backtrack(n, k, comb, ans, i + 1)
             comb.pop()
 
@@ -57,7 +62,4 @@ class Solution:
         comb = []
         self.backtrack(n, k, comb, ans, 1)
         return ans
-
-
 # leetcode submit region end(Prohibit modification and deletion)
-print(Solution().combine(4, 3))
