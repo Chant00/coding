@@ -73,6 +73,7 @@ class Solution:
                     t = board[i][j]
                     board[i][j] = '0'
                     k += 1
+                    # 这里要注意的点，是递归中出回溯比较好些，这里则需要在栈中多加入一个标记
                     # [None, (i, j, t)]，None做标记，说明此时是退出回溯的时候，这里存放了ijt,用于之后推出回溯时恢复数据
                     stack.extend([[None, (i, j, t)], [i + 1, j], [i - 1, j], [i, j + 1], [i, j - 1]])
 
