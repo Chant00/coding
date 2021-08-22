@@ -38,6 +38,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+from typing import List
+
+
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         """官方题解，时间复杂度：O(N!) 空间复杂度：O(N)
