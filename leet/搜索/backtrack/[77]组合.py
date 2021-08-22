@@ -41,19 +41,19 @@ from typing import List
 
 
 class Solution:
-    def backtrack(self, n, k, comb, ans, count, pos):
+    def backtrack(self, n, k, comb, ans, pos):
         if len(comb) == k:
             ans.append(comb[:])
             return
         # for i in range(1, n + 1):  # 这样写的话，会重复一遍，比如[1,4]和[4,1]这种重复
         for i in range(pos, n + 1):  # 从1开始到n，所以注意是n+1
             comb.append(i)
-            self.backtrack(n, k, comb, ans, count, i + 1)
+            self.backtrack(n, k, comb, ans, i + 1)
             comb.pop()
 
     def combine(self, n: int, k: int) -> List[List[int]]:
         ans = []
         comb = []
-        self.backtrack(n, k, comb, ans, 0, 1)
+        self.backtrack(n, k, comb, ans, 1)
         return ans
 # leetcode submit region end(Prohibit modification and deletion)
