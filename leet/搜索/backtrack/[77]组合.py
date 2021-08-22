@@ -48,6 +48,7 @@ class Solution:
         # for i in range(1, n + 1):  # 这样写的话，会重复一遍，比如[1,4]和[4,1]这种重复
         for i in range(pos, n + 1):  # 从1开始到n，所以注意是n+1
             comb.append(i)
+            # print(comb)
             self.backtrack(n, k, comb, ans, i + 1)
             comb.pop()
 
@@ -56,4 +57,7 @@ class Solution:
         comb = []
         self.backtrack(n, k, comb, ans, 1)
         return ans
+
+
 # leetcode submit region end(Prohibit modification and deletion)
+print(Solution().combine(4, 3))

@@ -61,19 +61,24 @@ class Solution:
         backtrack()
         return res
 
-    def backtracking(self, nums, level, ans):
+    def backtracking(self, nums, ans, pos):
         # if level == len(nums) - 1: # 这样写也可以
-        if level == len(nums):
+        if pos == len(nums):
             ans.append(nums[:])  # 注意nums[:]，拷贝一份，否则最后都是[1,2,3]
             return
         # for i in range(0, len(nums)): # 不能这么写
-        for i in range(level, len(nums)):
-            nums[level], nums[i] = nums[i], nums[level]  # 修改当前节点状态
-            self.backtracking(nums, level + 1, ans)  # 递归子节点
-            nums[level], nums[i] = nums[i], nums[level]  # 回改当前节点状态
+        for i in range(pos, len(nums)):
+            nums[pos], nums[i] = nums[i], nums[pos]  # 修改当前节点状态
+            # print(nums, pos)
+            self.backtracking(nums, ans, pos + 1)  # 递归子节点
+            nums[pos], nums[i] = nums[i], nums[pos]  # 回改当前节点状态
 
     def permute(self, nums: List[int]) -> List[List[int]]:
         ans = []
-        self.backtracking(nums, 0, ans)
+        self.backtracking(nums, ans, 0)
         return ans
+
+
 # leetcode submit region end(Prohibit modification and deletion)
+
+print(Solution().permute([1, 2, 3]))
