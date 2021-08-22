@@ -52,7 +52,7 @@ class Solution:
             return
         # for i in range(1, n + 1):  # 这样写的话，会重复一遍，比如[1,4]和[4,1]这种重复
         # for i in range(pos, n + 1):  # 从1开始到n，所以注意是n+1
-        for i in range(pos, n - (k - len(comb)) + 2):  # 剪枝
+        for i in range(pos, n - (k - len(comb)) + 2):  # 剪枝 n - (k - len(comb)) + 2
             comb.append(i)
             self.backtrack(n, k, comb, ans, i + 1)
             comb.pop()
