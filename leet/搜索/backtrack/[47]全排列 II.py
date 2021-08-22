@@ -42,8 +42,8 @@ class Solution:
             ans.append(perm[:])  # 注意perm[:]拷贝
             return
 
-        # for i in range(idx, len(nums)):
-        for i in range(0, len(nums)):
+        # for i in range(idx, len(nums)): # 注意这里不能这么写
+        for i in range(0, len(nums)):  # visited[i] 这个条件会去重
             # i > 0 and nums[i] == nums[i - 1] and not visited[i - 1] 保证不会重复
             if visited[i] or (i > 0 and nums[i] == nums[i - 1] and not visited[i - 1]):
                 continue

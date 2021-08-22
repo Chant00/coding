@@ -66,6 +66,7 @@ class Solution:
         if level == len(nums):
             ans.append(nums[:])  # 注意nums[:]，拷贝一份，否则最后都是[1,2,3]
             return
+        # for i in range(0, len(nums)): # 不能这么写
         for i in range(level, len(nums)):
             nums[level], nums[i] = nums[i], nums[level]  # 修改当前节点状态
             self.backtracking(nums, level + 1, ans)  # 递归子节点
