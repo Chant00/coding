@@ -24,10 +24,18 @@ def gradient(X, h, y):
     h = h(wx) h代表预测值
 
     loss = -y*log(h(wx)) - (1-y)log(1-h(wx))
+    假设样本权重是 t，那加权是 loss*t 还是 loss + t
+    还是说是 -y*log(h(wx)*t) - (1-y)log(1-h(wx)*t)
+    还是说是 -y*log(h(wx*t)) - (1-y)log(1-h(wx*t))
+    或者是 -y*t*log(h(wx)) - (1-y*t)log(1-h(wx)) ？
+
+    加权是令h(wx)
+
     loss'(w) = -y*h'(w)/h(wx) - (1-y)*(-h'(w))/(1-h(wx))
              = -y*(h(1-h)*x)/h - (1-y)*(-h(1-h)*x)/(1-h)
              = x[-y(1-h) + (1-y)h]
              = x(h-y)
+    加权是 x(w*h-y)还是x(h-w*y)还是x(h-y)*w 或者x(h-y)+w
     """
     return np.dot(X.T, (h - y)) / y.shape[0]
 
