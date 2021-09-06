@@ -59,6 +59,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[1111]有效括号的嵌套深度.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[1111]有效括号的嵌套深度.py" />
+              <option name="questionId" value="1208" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[1143]最长公共子序列.py">
           <value>
             <LeetcodeEditor>
@@ -144,6 +152,14 @@
             <LeetcodeEditor>
               <option name="path" value="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[1]两数之和.py" />
               <option name="questionId" value="1" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[20]有效的括号.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[20]有效的括号.py" />
+              <option name="questionId" value="20" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -408,6 +424,14 @@
             <LeetcodeEditor>
               <option name="path" value="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[665]非递减数列.py" />
               <option name="questionId" value="665" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[678]有效的括号字符串.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/w4/7q9x39x53f7ghxythsyhxnqh0000gn/T/leetcode/editor/cn/[678]有效的括号字符串.py" />
+              <option name="questionId" value="678" />
             </LeetcodeEditor>
           </value>
         </entry>
