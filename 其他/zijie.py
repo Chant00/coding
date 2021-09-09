@@ -18,12 +18,10 @@ from typing import List
 def func(nums: List[int]) -> List[int]:
     que = [[(0, nums[0])]]
     n = len(nums) - 1
-    cnt = 0
     while que:
         path = que.pop(0)
         i, num = path[-1]
         if i == n:
-            print('hh', cnt)
             return path
         if i > 0:
             que.append(path + [(i - 1, nums[i - 1])])
@@ -32,7 +30,6 @@ def func(nums: List[int]) -> List[int]:
         for j in range(n + 1):
             if j != i and nums[j] == num:
                 que.append(path + [(j, nums[j])])
-        cnt += 1
 
 
 print(func([1, 2, 2, 3, 1, 4, 5, 1, 6, 7, 3]))
