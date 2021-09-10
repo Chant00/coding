@@ -10,16 +10,22 @@ Created on 9/6/21
 [1,2,3,1,4,5,6,7,3]
 从下标为0的地方出发，每次可以向左或向右走一步，或者直接跳到相同数字处，比如从下标为0的1直接跳到下标为3的1
 示例中的最短路径是3， 即1->1->3->3
+
+
+这个题解法应该是，预先吧每个位置上的{"左”,"右","跳"}位置整理好，然后从第一个位置开始广搜，第一个达到末尾的就是最短的那个路径
 """
 from collections import deque
 from typing import List
 
 
 def func(nums: List[int]) -> List[int]:
-    que = [[(0, nums[0])]]
+    """保存路径"""
+    que = deque([[(0, nums[0])]])
+    # que = [[(0, nums[0])]]
     n = len(nums) - 1
     while que:
-        path = que.pop(0)
+        # path = que.pop(0)
+        path = que.popleft()
         i, num = path[-1]
         if i == n:
             return path
@@ -36,6 +42,7 @@ print(func([1, 2, 2, 3, 1, 4, 5, 1, 6, 7, 3]))
 
 
 def minJump(nums: List[int]) -> int:
+    """只计算最短步长"""
     que = deque([(0, 0)])
     n = len(nums)
     step = 0
