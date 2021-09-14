@@ -35,8 +35,7 @@ from typing import List
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        """其中 dp[i][j] 表示从数组的 [0,i] 下标范围内选取若干个正整数（可以是 0 个），
-        是否存在一种选取方案使得被选取的正整数的和等于 j"""
+        """其中 dp[i][j] 表示 从数组的 [0,i] 下标范围内选取若干个正整数（可以是 0 个）, 每个数只能用一次，能否使得这些数的和等于 j"""
         target, remainder = divmod(sum(nums), 2)
         if remainder == 1:
             return False
