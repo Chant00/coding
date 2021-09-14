@@ -18,6 +18,8 @@ Created on 9/6/21
 排列组合的题
 输入n, 输出所有n个括号的和合法序列。
 比如()(())是合法的，)(())是非法的。
+
+我的解法，回溯法+栈判断是否合法
 """
 from collections import deque
 from typing import List
