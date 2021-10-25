@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on 8/25/21
+
+@author: Chant
+参考: https://blog.csdn.net/jeryjeryjery/article/details/80245924
+"""
 import random
 
 
