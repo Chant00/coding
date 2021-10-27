@@ -99,11 +99,6 @@ class LargeDiscretizer:
         return self.parameter_dic[name].fast_bin2idx(v)
 
 
-def get_bound_discrete(data, n_bins, strategy):
-    f_data = np.array(data).reshape((-1, 1))
-    return KBinsDiscretizer(n_bins, encode='ordinal', strategy=strategy).fit(f_data).bin_edges_
-
-
 def load_dict():
     return {
         'a': list(range(10, 20, 1)),
@@ -167,6 +162,11 @@ class SingleLargeDiscretizer:
 
     def math_test(self, v):
         return int((v - self._min) / self.length * self.table_size)
+
+
+def get_bound_discrete(data, n_bins, strategy):
+    f_data = np.array(data).reshape((-1, 1))
+    return KBinsDiscretizer(n_bins, encode='ordinal', strategy=strategy).fit(f_data).bin_edges_
 
 
 def test():
