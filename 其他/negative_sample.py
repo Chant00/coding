@@ -10,8 +10,8 @@ import random
 
 
 class NegativeSampler:
-    def __init__(self, table_size=-1, power=0.75):
-        self.word_freq = {'a': 20, 'b': 11, 'c': 70}
+    def __init__(self, word_freq=None, table_size=-1, power=0.75):
+        self.word_freq = word_freq
         self.vocab = list(self.word_freq.items())
         self.vocab_size = len(self.vocab)
         #
@@ -64,17 +64,18 @@ class NegativeSampler:
 
 
 def test():
-    ns = NegativeSampler(power=1, table_size=-1)
+    word_freq = {'a': 20, 'b': 11, 'c': 70}
+    ns = NegativeSampler(word_freq, power=1, table_size=-1)
     ns.stat_check()
-    ns = NegativeSampler(power=0.75, table_size=-1)
+    ns = NegativeSampler(word_freq, power=0.75, table_size=-1)
     ns.stat_check()
-    ns = NegativeSampler(power=0.4, table_size=-1)
-    ns.stat_check()
-
-    ns = NegativeSampler(power=0.1, table_size=-1)
+    ns = NegativeSampler(word_freq, power=0.4, table_size=-1)
     ns.stat_check()
 
-    ns = NegativeSampler(power=0.1, table_size=100)
+    ns = NegativeSampler(word_freq, power=0.1, table_size=-1)
+    ns.stat_check()
+
+    ns = NegativeSampler(word_freq, power=0.1, table_size=100)
     ns.stat_check()
 
     ns.sample()
