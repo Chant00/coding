@@ -73,8 +73,8 @@ class Discretizer:
     def __init__(self):
         self.boundary = load_dict()
         for name, bins in self.boundary.items():
-            # 去除左边界，因为bisect_left
-            self.boundary[name] = bins[1:]
+            # 去除最大最小值，因为bisect_left
+            self.boundary[name] = bins[1:-1]
             if len(bins) > 2720:
                 print(f'INFO: name={name},len(bins)={len(bins)} exceed 2720, '
                       f'suggest to use LargeDiscretizer()')
