@@ -70,5 +70,4 @@ class Solution:
 
         return len(stack) == 0
 
-
 # leetcode submit region end(Prohibit modification and deletion)
