@@ -5,7 +5,7 @@ Created on 5/1/21
 
 @author: Chant
 
-快排，归并排序，每天写一次，知道写对多次
+快排，归并排序，每天写一次，直到写对多次
 """
 import numpy as np
 import random
