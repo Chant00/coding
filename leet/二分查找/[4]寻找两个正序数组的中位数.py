@@ -96,8 +96,8 @@ class Solution:
                 r = i - 1
         return median1 if (m + n) % 2 == 1 else (median1 + median2) / 2
 
-    def getKthElement(self, nums1, nums2, k):
-        """O(log(m+n))
+    def getKthElement(self, nums1: List[int], nums2: List[int], k) -> float:
+        """O(log(m+n)) 官方题解
         - 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
         - 这里的 "/" 表示整除
         - nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
@@ -109,26 +109,27 @@ class Solution:
         - 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
         """
         m, n = len(nums1), len(nums2)
-        i1, i2 = 0, 0
+        i, j = 0, 0
         while True:
-            # 特殊情况，只需按照i1, i2 = 0, 0的时候考虑就行
-            if i1 == m:
-                return nums2[i2 + k - 1]
-            if i2 == n:
-                return nums1[i1 + k - 1]
-            if k == 1:
-                return min(nums1[i1], nums2[i2])
+            # 边界情况，只需按照i, j = 0, 0的时候考虑就行
+            if i == m:
+                return nums2[j + k - 1]
+            if j == n:
+                return nums1[i + k - 1]
+            if k == 1:  # 注意：这个容易忘记
+                return min(nums1[i], nums2[j])
             # 正常情况
-            new_i1 = min(i1 + k // 2 - 1, m - 1)  # 防止数组越界
-            new_i2 = min(i2 + k // 2 - 1, n - 1)
+            i_new = min(i + k // 2 - 1, m - 1)  # 防止数组越界
+            j_new = min(j + k // 2 - 1, n - 1)
             # nums1[new_i1] == nums2[new_i2]时，当做以下2者中任意情况处理即可，但是不能单独处理为既删除nums1又删除nums2,会死循环
-            if nums1[new_i1] < nums2[new_i2]:  # < 或者<=都可以
+            if nums1[i_new] <= nums2[j_new]:
                 # k -= k // 2 # 不能这么写，因为 new_i1 可能取值为m - 1，这时候删除的个数就不是k // 2个，new_i1 - i1 + 1才是绝对正确的
-                k -= new_i1 - i1 + 1
-                i1 = new_i1 + 1
+                # 注意: 这里要先更新k再更新i
+                k -= i_new - i + 1
+                i = i_new + 1
             else:
-                k -= new_i2 - i2 + 1
-                i2 = new_i2 + 1
+                k -= j_new - j + 1
+                j = j_new + 1
 
     def findMedianSortedArrays1(self, nums1: List[int], nums2: List[int]) -> float:
         """二分查找"""
@@ -138,4 +139,7 @@ class Solution:
             return self.getKthElement(nums1, nums2, quotient + 1)  # 注意quotient + 1
         else:
             return (self.getKthElement(nums1, nums2, quotient) + self.getKthElement(nums1, nums2, quotient + 1)) / 2
+
+
+Solution().findMedianSortedArrays1([1, 3], [2])
 # leetcode submit region end(Prohibit modification and deletion)
