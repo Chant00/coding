@@ -51,34 +51,37 @@ class Solution:
 
         return int(x0)
 
-    def mySqrt2(self, x: int) -> int:
-        """二分法，直接取整数"""
-        l, r, ans = 0, x, -1
-        while l <= r:
-            mid = (l + r) // 2
-            if mid * mid <= x:
-                ans = mid
-                l = mid + 1
-            else:
-                r = mid - 1
-        return ans
-
     def mySqrt1(self, x: int) -> int:
-        """二分法，最终取int，中间判断0和1"""
-        threshold = 0.001
+        """二分法1
+        在[0, x)上 找到满足t**2=x的t
+        由于这里限制t是整数，所以是找到满足t**2<=x的最大t，即t的右边界
+        注意：搜索区间[0, x)存在特殊情况，x=0和1的时候 ，区间为空
+        """
+        # 后面使用的是while l < r在[0, x)上搜索，所以x=0和1的时候，搜索区间为空，要特殊处理
+        if x <= 1:
+            return x
         l, r = 0, x
-        ans = 0
-        while l <= r:
-            mid = (l + r) / 2
-            if abs(mid ** 2 - x) <= threshold:
-                if 0 < mid < 1:
-                    ans = 1
-                else:
-                    ans = int(mid)
-                break
+        while l < r:
+            mid = l + (r - l) // 2
+            if mid ** 2 <= x:
+                l = mid + 1
             elif mid ** 2 > x:
                 r = mid
-            else:
-                l = mid
-        return ans
+        return l - 1
+
+    def mySqrt2(self, x: int) -> int:
+        """二分法2，优于二分法1
+        在[0, x)上 找到满足t**2=x的t
+        由于这里限制t是整数，所以是找到满足t**2<=x的最大t，即t的右边界
+        注意：搜索区间[0, x)存在特殊情况，x=0和1的时候 ，区间为空
+        所以改为 在[0, x]上 找到满足t**2<=x的最大t，即t的右边界
+        """
+        l, r = 0, x
+        while l <= r:
+            mid = l + (r - l) // 2
+            if mid ** 2 <= x:
+                l = mid + 1
+            elif mid ** 2 > x:
+                r = mid - 1
+        return l - 1
 # leetcode submit region end(Prohibit modification and deletion)
