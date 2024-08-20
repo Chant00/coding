@@ -65,7 +65,24 @@ from typing import List
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        """划分数组O(log(min(m,n)))"""
+        """划分数组O(log(min(m,n)))
+        将数组分为两部分
+            前一部分left_part包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
+            后一部分right_part包含 nums1[i .. m-1] 和 nums2[j .. n-1]
+        m+n为偶数，left_part的数量应该等于right_part的数量，这时候(max(left)+min(right))/2是中位数。
+        m+n为奇数，left_part的数量应该等于right_part的数量+1，这时候max(left)是中位数。
+            所以需要变量m1,m2来记录max(left)和min(right)
+
+        m+n为偶数：i+j=m-i+n-j
+        m+n为奇数：i+j=m-i+n-j+1
+        i+j = (m+n)//2 -> j = (m+n)//2 - i
+        m得小于n，否则j可能是负数，确保num1是size更小的数组。不是就交换一下。
+        注意边界条件，i很小时，j可能会超过n。
+        nums1[i-1] <= nums2[j]
+        nums2[j-1] <= nums1[i]
+
+        对i在[0,m)区间二分搜索，找到满足nums1[i-1] <= nums2[j]的最大的i。（二分查找右边界）
+        """
         m, n = len(nums1), len(nums2)
         if m > n:  # 确保m<n，否则计算j = (m + n + 1) // 2 - i可能会出现负数
             return self.findMedianSortedArrays(nums2, nums1)
@@ -73,8 +90,6 @@ class Solution:
         l, r = 0, m
         median1, median2 = 0, 0  # median1前一部分的最大值,median2后一部分的最小值
         while l <= r:
-            # 前一部分包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
-            # 后一部分包含 nums1[i .. m-1] 和 nums2[j .. n-1]
             i = l + (r - l) // 2
             j = (m + n + 1) // 2 - i
             # i=0、i=m、j=0、j=n 的临界条件处理
@@ -143,5 +158,5 @@ class Solution:
             return (self.getKthElement(nums1, nums2, quotient) + self.getKthElement(nums1, nums2, quotient + 1)) / 2
 
 
-Solution().findMedianSortedArrays1([1, 3], [2])
+Solution().findMedianSortedArrays([1, 3], [2])
 # leetcode submit region end(Prohibit modification and deletion)
