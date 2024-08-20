@@ -75,7 +75,7 @@ class Solution:
 
         m+n为偶数：i+j=m-i+n-j
         m+n为奇数：i+j=m-i+n-j+1
-        i+j = (m+n)//2 -> j = (m+n)//2 - i
+        i+j = (m+n+1)//2 -> j = (m+n+1)//2 - i
         m得小于n，否则j可能是负数，确保num1是size更小的数组。不是就交换一下。
         注意边界条件，i很小时，j可能会超过n。
         nums1[i-1] <= nums2[j]
