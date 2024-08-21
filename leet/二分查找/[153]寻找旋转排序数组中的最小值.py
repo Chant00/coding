@@ -57,6 +57,23 @@ from typing import List
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        """评论版，主要是初始化一个min_num来记录最小值"""
+        l, r = 0, len(nums) - 1
+        min_num = float('inf')  # 记录最小值
+        while l <= r:
+            mid = l + (r - l) // 2
+            if nums[mid] <= nums[r]:
+                min_num = min(min_num, nums[mid])
+                r = mid - 1
+            else:
+                l = mid + 1
+        return min_num
+
+    def findMin(self, nums: List[int]) -> int:
+        """官方题解，不好理解。在[0, len(nums) - 1)上搜索，
+        注意搜索区间，r = len(nums) - 1，因为后面要if nums[mid] < nums[r]:
+        需要一直和右边界比较，而与nums[r-1]比较的话会有各种问题。
+        """
         l, r = 0, len(nums) - 1
         while l < r:
             mid = l + (r - l) // 2
