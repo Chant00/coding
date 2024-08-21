@@ -52,23 +52,71 @@ from typing import List
 
 
 class Solution:
+    """
+    将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。
+    此时有序部分用二分法查找。无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.
+    """
+
     def search(self, nums: List[int], target: int) -> int:
-        l, r = 0, len(nums)
-        while l < r:
+        """[]的方式搜索，所以r=len(nums)-1, while l<= r，r = mid -1"""
+        l, r = 0, len(nums) - 1
+        while l <= r:
             mid = l + (r - l) // 2
             if nums[mid] == target:
-                return True
-            if nums[mid] > nums[l]:
-                # 左区间升序
+                return mid
+            # 当mid就是0的时候，显然[0,mid]是有序的(只有一个元素)，应该走if分支
+            if nums[l] <= nums[mid]:  # 注意：这里一定是<=，<是错误的
                 if nums[l] <= target < nums[mid]:
                     r = mid - 1
                 else:
                     l = mid + 1
             else:
-                # 右区间升序
                 if nums[mid] < target <= nums[r]:
                     l = mid + 1
                 else:
                     r = mid - 1
-        return False
+        return -1
+
+    def search2(self, nums: List[int], target: int) -> int:
+        """[)的方式搜索，所以r=len(nums), while l<r，r = mid"""
+        l, r = 0, len(nums)
+        while l < r:
+            mid = l + (r - l) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[l] < nums[mid]:  # 注意：这里是<或<=都可以，因为r=len(nums)，所以规避了mid就是0的情况
+                if nums[l] <= target < nums[mid]:
+                    r = mid
+                else:
+                    l = mid + 1
+            else:
+                if nums[mid] < target <= nums[r - 1]:
+                    l = mid + 1
+                else:
+                    r = mid
+        return -1
+
+    def search3(self, nums: List[int], target: int) -> int:
+        """官方题解版，有些许不同"""
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[0] <= nums[mid]:  # 注意:这里不是nums[l] <= nums[mid]
+                if nums[0] <= target < nums[mid]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            else:
+                if nums[mid] < target <= nums[len(nums) - 1]:  # 注意:这里不是target <= nums[r]
+                    l = mid + 1
+                else:
+                    r = mid - 1
+        return -1
+
+
+# Solution().search([4, 5, 6, 7, 0, 1, 2], 3)
+# Solution().search([1], 1)
+Solution().search2([3, 1], 1)
 # leetcode submit region end(Prohibit modification and deletion)
