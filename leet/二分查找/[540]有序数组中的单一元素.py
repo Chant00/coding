@@ -26,7 +26,7 @@ from typing import List
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
         """O(log(n/2))只需要对偶数索引进行二分查找"""
-        l, r = 0, len(nums) - 1
+        l, r = 0, len(nums) - 1 # 注意这里是len(nums) - 1，因为后续nums[mid + 1]，r=len(nums)的话会数据越界
         while l < r:
             mid = l + (r - l) // 2
             if mid % 2 == 1:
