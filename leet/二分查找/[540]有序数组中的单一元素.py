@@ -38,7 +38,7 @@ class Solution:
         return nums[l]
 
     def singleNonDuplicate1(self, nums: List[int]) -> int:
-        """二分法O(log(n)) 和136题相似，但是136是无需数组，只能遍历O(n)"""
+        """二分法O(log(n)) 和136题相似，但是136是无序数组，只能遍历O(n)"""
         l, r = 0, len(nums) - 1
         while l < r:
             mid = l + (r - l) // 2
