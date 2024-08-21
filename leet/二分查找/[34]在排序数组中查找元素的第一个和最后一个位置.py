@@ -73,6 +73,37 @@ def binarySearch2(nums, target, lower, l, r):
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        """二分查找，返回左边界和有边界。
+        第一次[0, n)查找有边界，同时在第一次命中target，记录位置first_hit
+        如果first_hit没命中，直接返回-1，-1
+        第二次在[0, first_hit]，也就是[0, first_hit+1) 中二分查找左边界
+        """
+        l, r = 0, len(nums)
+        first_hit = None
+        while l < r:
+            mid = l + (r - l) // 2
+            if nums[mid] == target:
+                if first_hit is None:
+                    first_hit = mid
+                l = mid + 1
+            elif nums[mid] < target:
+                l = mid + 1
+            elif nums[mid] > target:
+                r = mid
+        if first_hit is None:
+            return [-1, -1]
+        s, e = 0, first_hit + 1
+        while s < e:
+            mid = s + (e - s) // 2
+            if nums[mid] == target:
+                e = mid
+            elif nums[mid] < target:
+                s = mid + 1
+            elif nums[mid] > target:
+                e = mid
+        return [s, l - 1]
+
+    def searchRange0(self, nums: List[int], target: int) -> List[int]:
         """官方题解，二分法，左右边界都找"""
         left = binarySearch(nums, target, True)
         right = binarySearch(nums, target, False) - 1
