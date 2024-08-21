@@ -65,6 +65,43 @@ from typing import List
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        """划分数组法O(log(min(m,n)))
+        将数组分为两部分
+            left_part包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
+            right_part包含 nums1[i .. m-1] 和 nums2[j .. n-1]
+        奇数：i+j = m-i+n-j+1
+        偶数：i+j = m-i+n-j
+        j = (m+n+1)//2 - i
+            确保m<n，否则j可能是负数
+        二分查找[0, m]上（注意不是[0,m)上，因为left_part是到i-1, 不是i），等价与[0,m+1)
+            满足max(nums1[i-1], nums2[j-1]) <= min(nums1[i], nums2[j])的最大i
+            等价于满足nums1[i-1] <=  nums2[j] 同时 nums[i] > nums2[j-1] 的最大i
+            等价于满足nums1[i-1] <=  nums2[j] 的最大i（此时带入i+1，必然有nums[i] > nums2[j-1]）
+        """
+        m, n = len(nums1), len(nums2)
+        if m > n:
+            return self.findMedianSortedArrays(nums2, nums1)
+
+        l, r = 0, m + 1  # 注意: 这里是m+1，因为left_part是到i-1, 不是i
+        m1, m2 = 0, 0
+        while l < r:
+            i = l + (r - l) // 2
+            j = (m + n + 1) // 2 - i
+
+            nums1_i1 = nums1[i - 1] if i >= 1 else float('-inf')
+            nums1_i = nums1[i] if i < m else float('inf')
+            nums2_j1 = nums2[j - 1] if j >= 1 else float('-inf')
+            nums2_j = nums2[j] if j < n else float('inf')
+
+            if nums1_i1 <= nums2_j:
+                m1, m2 = max(nums1_i1, nums2_j1), min(nums1_i, nums2_j)
+                l = i + 1
+            else:
+                r = i
+
+        return m1 if (m + n) % 2 == 1 else (m1 + m2) / 2
+
+    def findMedianSortedArrays2(self, nums1: List[int], nums2: List[int]) -> float:
         """划分数组O(log(min(m,n)))
         将数组分为两部分
             前一部分left_part包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
@@ -81,7 +118,7 @@ class Solution:
         nums1[i-1] <= nums2[j]
         nums2[j-1] <= nums1[i]
 
-        对i在[0,m)区间二分搜索，找到满足nums1[i-1] <= nums2[j]的最大的i。（二分查找右边界）
+        对i在[0,m]区间二分搜索，找到满足nums1[i-1] <= nums2[j]的最大的i。（二分查找右边界）
         """
         m, n = len(nums1), len(nums2)
         if m > n:  # 确保m<n，否则计算j = (m + n + 1) // 2 - i可能会出现负数
