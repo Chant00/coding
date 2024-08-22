@@ -102,6 +102,34 @@ class Solution:
                     l = mid + 1
 
         return False
+
+    def search2(self, nums: List[int], target: int) -> bool:
+        """[0， len(nums))的搜索区间，对比search1"""
+        l, r = 0, len(nums)
+        while l < r:
+            mid = l + (r - l) // 2
+            if nums[mid] == target:
+                return True
+            # 可以改成这样。注意这里不能r-=1，就像二分过程中r=mid而不是mid-1
+            # if nums[mid] == nums[l] and nums[mid] == nums[r - 1]:
+            #     l += 1
+            # elif nums[mid] >= nums[l]:  # 注意这里是>=，即nums[mid] == nums[l]但nums[mid] != nums[r - 1]的情况
+            if nums[mid] == nums[l]:
+                l += 1
+            elif nums[mid] > nums[l]:  # 左边有序
+                if nums[mid] > target >= nums[l]:
+                    r = mid
+                else:
+                    l = mid + 1
+            else:  # 右边有序
+                if nums[mid] < target <= nums[r - 1]:
+                    l = mid + 1
+                else:
+                    r = mid
+
+        return False
+
+
 # leetcode submit region end(Prohibit modification and deletion)
 """
 三种情况
