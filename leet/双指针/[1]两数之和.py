@@ -57,7 +57,7 @@ class Solution:
         for i, n in enumerate(nums):
             for j in range(i + 1, size):
                 if n + nums[j] == target:
-                    return i, j
+                    return [i, j]
         return []
 
     def twoSum2(self, nums: List[int], target: int) -> List[int]:
@@ -69,7 +69,7 @@ class Solution:
         for i, n in enumerate(nums):
             tmp = target - n
             if tmp in map:
-                return map[tmp], i
+                return [map[tmp], i]
             else:
                 map[n] = i
         return []
