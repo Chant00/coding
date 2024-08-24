@@ -49,7 +49,7 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def superEggDrop(self, k: int, n: int) -> int:
-        """李永乐老师讲解写法，逻辑没问题，但是superEggDrop(4, 5000))会超时
+        """李永乐老师讲解写法，逻辑没问题，但是superEggDrop(4, 5000))会超时，todo:需要用二分法优化，官方题解的方法1
         Mi(n,k) = max(M(i,k-1), M(n-i,k)) + 1
         M(n,k) = min(M1,M2,...Mn)
         """
