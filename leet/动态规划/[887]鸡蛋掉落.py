@@ -49,8 +49,8 @@
 class Solution:
     def superEggDrop(self, k: int, n: int) -> int:
         """李永乐老师讲解写法，逻辑没问题，但是superEggDrop(4, 5000))会超时，所以这里叠加二分法优化
+        动态规划+二分 复杂度O(kn2) 降低至 O(knlogn)
         官方题解的方法1相同，只是官解用的带记忆的递归，这里用的循环。
-        复杂度O(kn2) 降低至 O(knlogn)
         Mi(n,k) = max(M(i,k-1), M(n-i,k)) + 1
         M(n,k) = min(M1,M2,...Mn)
         """
@@ -85,7 +85,7 @@ class Solution:
 
     def superEggDrop0(self, k: int, n: int) -> int:
         """李永乐老师讲解写法，逻辑没问题，但是superEggDrop(4, 5000))会超时，需要用二分法优化，官方题解的方法1
-        复杂度O(kn2)
+        暴力法 复杂度O(kn2)
         Mi(n,k) = max(M(i,k-1), M(n-i,k)) + 1
         M(n,k) = min(M1,M2,...Mn)
         """
@@ -121,6 +121,9 @@ class Solution:
         f = [[0] * (k + 1) for _ in range(n + 1)]
         for i in range(1, k + 1):
             f[1][i] = 1
+        # 这个包含在后面的内层循环里了，所以可以省去
+        # for i in range(1, n + 1):
+        #     f[i][1] = i
         ans = -1
         for i in range(2, n + 1):
             for j in range(1, k + 1):
