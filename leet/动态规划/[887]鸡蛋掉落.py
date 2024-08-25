@@ -133,7 +133,30 @@ class Solution:
                 break
         return ans
 
-
+    def superEggDrop2_1(self, k: int, n: int) -> int:
+        """
+        f[i][j] j个鸡蛋，i次操作下的最大楼层
+        碎：下面有f[t-1][k-1]层
+        不碎: 上面有f[t-1][k]层
+        f[t][k] = 1 + f[t-1][k] + f[t-1][k-1]
+        边界：f[1][j]=1, f[i][1]=i
+        """
+        # if n == 1:
+        #     return 1
+        f = [[0] * (k + 1) for _ in range(n + 1)]
+        # for j in range(1, k + 1):
+        #     f[1][j] = 1
+        ans = -1
+        for i in range(1, n + 1):
+            for j in range(1, k + 1):  # 从1开始，这种写法就不用单独处理n==1的情况
+                if i == 1:
+                    f[1][j] = 1
+                else:
+                    f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j]
+            if f[i][k] >= n:
+                ans = i
+                break
+        return ans
 # k1 = 3
 # n1 = 39
 # print(Solution().superEggDrop(k1, n1))  # 19
