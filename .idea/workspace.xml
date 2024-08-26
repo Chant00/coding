@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="" />
+    <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/leet/动态规划" />
-    <property name="settings.editor.selected.configurable" value="configurable.stylesheets" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -108,7 +110,7 @@
       <updated>1724491126989</updated>
       <workItem from="1724491130880" duration="10585000" />
       <workItem from="1724566428116" duration="15235000" />
-      <workItem from="1724640134917" duration="586000" />
+      <workItem from="1724640134917" duration="1443000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>

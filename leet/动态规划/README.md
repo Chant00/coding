@@ -27,4 +27,7 @@
 1. [python整数快速幂和矩阵快速幂](https://blog.csdn.net/bianxia123456/article/details/105167294/)
 2. [leetcode 50. Pow(x, n)官方题解](https://leetcode-cn.com/problems/powx-n/solution/powx-n-by-leetcode-solution/)
 
-[灵茶-分享丨【题单】动态规划（入门/背包/状态机/划分/区间/状压/数位/树形/数据结构优化）](https://leetcode.cn/circle/discuss/tXLS3i/)
+- [灵茶-分享丨【题单】动态规划（入门/背包/状态机/划分/区间/状压/数位/树形/数据结构优化）](https://leetcode.cn/circle/discuss/tXLS3i/)
+- labuladong系列
+  - [经典动态规划：打家劫舍系列问题](https://mp.weixin.qq.com/s/z44hk0MW14_mAQd7988mfw)
+  - [动态规划答疑篇](https://mp.weixin.qq.com/s/qvlfyKBiXVX7CCwWFR-XKg)
