@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/doc/经典动态规划：0-1 背包问题.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/labuladong_doc.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/labuladong_doc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leet/动态规划/[887]鸡蛋掉落.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/动态规划/[887]鸡蛋掉落.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leet/动态规划/[1884]鸡蛋掉落-两枚鸡蛋.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/动态规划/[1884]鸡蛋掉落-两枚鸡蛋.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +42,36 @@
       <recent name="$PROJECT_DIR$/doc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/labuladong" />
       <recent name="$PROJECT_DIR$/leet/双指针" />
       <recent name="$PROJECT_DIR$/leet/动态规划/背包问题" />
       <recent name="$PROJECT_DIR$/leet/动态规划/一维" />
       <recent name="$PROJECT_DIR$/leet/动态规划" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.[887]鸡蛋掉落 (1)">
+  <component name="RunManager" selected="Python.[1884]鸡蛋掉落-两枚鸡蛋">
+    <configuration name="[1884]鸡蛋掉落-两枚鸡蛋" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="coding" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leet/动态规划" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leet/动态规划/[1884]鸡蛋掉落-两枚鸡蛋.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="[887]鸡蛋掉落 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="coding" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -98,6 +118,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.[1884]鸡蛋掉落-两枚鸡蛋" />
         <item itemvalue="Python.[887]鸡蛋掉落 (1)" />
         <item itemvalue="Python.[887]鸡蛋掉落" />
       </list>
@@ -114,7 +135,7 @@
       <workItem from="1724491130880" duration="10585000" />
       <workItem from="1724566428116" duration="15235000" />
       <workItem from="1724640134917" duration="3221000" />
-      <workItem from="1724726831890" duration="1343000" />
+      <workItem from="1724726831890" duration="2065000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -186,7 +207,21 @@
       <option name="project" value="LOCAL" />
       <updated>1724653085907</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="鸡蛋掉落问题">
+      <created>1724743121820</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1724743121820</updated>
+    </task>
+    <task id="LOCAL-00012" summary="labuladong">
+      <created>1724743223408</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724743223408</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +231,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="算法小抄" />
     <MESSAGE value="鸡蛋掉落问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="鸡蛋掉落问题" />
+    <MESSAGE value="labuladong" />
+    <option name="LAST_COMMIT_MESSAGE" value="labuladong" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -231,6 +267,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/coding$_887_.coverage" NAME="[887]鸡蛋掉落 Coverage Results" MODIFIED="1724581366367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
-    <SUITE FILE_PATH="coverage/coding$_887___1_.coverage" NAME="[887]鸡蛋掉落 (1) Coverage Results" MODIFIED="1724742796495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
+    <SUITE FILE_PATH="coverage/coding$_887___1_.coverage" NAME="[887]鸡蛋掉落 (1) Coverage Results" MODIFIED="1724742978536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
+    <SUITE FILE_PATH="coverage/coding$_1884__.coverage" NAME="[1884]鸡蛋掉落-两枚鸡蛋 Coverage Results" MODIFIED="1724743438611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
   </component>
 </project>

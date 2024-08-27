@@ -77,4 +77,18 @@ class Solution:
                 ans = i
                 break
         return ans
+
+    def twoEggDrop3(self, n: int) -> int:
+        """while循环，简洁版"""
+        k = 2
+        f = [[0] * (k + 1) for _ in range(n + 1)]
+        i = 0
+        while f[i][k] < n:
+            i += 1
+            for j in range(1, k + 1):
+                f[i][j] = 1 + f[i - 1][j] + f[i - 1][j - 1]
+        return i
+
+print(Solution().twoEggDrop3(50))
+print(Solution().twoEggDrop(50))
 # leetcode submit region end(Prohibit modification and deletion)
