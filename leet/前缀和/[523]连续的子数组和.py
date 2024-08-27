@@ -87,7 +87,7 @@ class Solution:
             cur_sum = pre_sum + num
             if cur_sum % k in seen:
                 return True
-            seen.add(pre_sum % k)
+            seen.add(pre_sum % k)  # 前缀和延迟一步计入集合
             pre_sum = cur_sum
         return False
 
