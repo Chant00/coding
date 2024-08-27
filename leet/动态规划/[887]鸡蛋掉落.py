@@ -140,6 +140,7 @@ class Solution:
         不碎: 上面有f[t-1][k]层
         f[t][k] = 1 + f[t-1][k] + f[t-1][k-1]
         边界：f[1][j]=1, f[i][1]=i
+        边界也可以改为：f[0][j]=0, f[i][0]=0，代码就更简洁
         """
         # if n == 1:
         #     return 1
@@ -149,17 +150,31 @@ class Solution:
         ans = -1
         for i in range(1, n + 1):
             for j in range(1, k + 1):  # 从1开始，这种写法就不用单独处理n==1的情况
-                if i == 1:
-                    f[1][j] = 1
-                else:
-                    f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j]
+                # if i == 1:
+                #     f[1][j] = 1
+                # else:
+                f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j]
             if f[i][k] >= n:
                 ans = i
                 break
         return ans
-# k1 = 3
-# n1 = 39
-# print(Solution().superEggDrop(k1, n1))  # 19
-# print(Solution().superEggDrop0(k1, n1))  # 19
-# print(Solution().superEggDrop2(k1, n1))  # 19
+
+    def superEggDrop2_2(self, k: int, n: int) -> int:
+        """while循环，极简代码"""
+        # bad case dp[0][..]=0,dp[..][0]=0, 初始化包含了
+        f = [[0] * (k + 1) for _ in range(n + 1)]
+        i = 0
+        while f[i][k] < n:
+            i += 1
+            for j in range(1, k + 1):
+                f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j]
+        return i
+
+
+k1 = 3
+n1 = 39
+print(Solution().superEggDrop(k1, n1))  # 19
+print(Solution().superEggDrop0(k1, n1))  # 19
+print(Solution().superEggDrop2(k1, n1))  # 19
+print(Solution().superEggDrop2_2(k1, n1))  # 19
 # leetcode submit region end(Prohibit modification and deletion)
