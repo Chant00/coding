@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/leet/字符串/[43]字符串相乘.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/字符串/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/字符串/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/字符串/字符串.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +53,8 @@
       <recent name="$PROJECT_DIR$/leet/动态规划" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.[43]字符串相乘">
-    <configuration name="[1884]鸡蛋掉落-两枚鸡蛋" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.[415]字符串相加">
+    <configuration name="[415]字符串相加" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="coding" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -67,12 +62,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leet/动态规划" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leet/动态规划/[1884]鸡蛋掉落-两枚鸡蛋.py" />
+      <option name="SCRIPT_NAME" value="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn/[415]字符串相加.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -171,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.[415]字符串相加" />
         <item itemvalue="Python.[43]字符串相乘" />
         <item itemvalue="Python.[969]煎饼排序" />
         <item itemvalue="Python.[523]连续的子数组和" />
         <item itemvalue="Python.[560]和为 K 的子数组" />
-        <item itemvalue="Python.[1884]鸡蛋掉落-两枚鸡蛋" />
       </list>
     </recent_temporary>
   </component>
@@ -191,7 +186,7 @@
       <workItem from="1724566428116" duration="15235000" />
       <workItem from="1724640134917" duration="3221000" />
       <workItem from="1724726831890" duration="2422000" />
-      <workItem from="1724747232488" duration="17258000" />
+      <workItem from="1724747232488" duration="19273000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -326,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724831680263</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="字符串">
+      <created>1724838099393</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1724838099393</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +341,8 @@
     <MESSAGE value="labuladong" />
     <MESSAGE value="前缀和" />
     <MESSAGE value="排序" />
-    <option name="LAST_COMMIT_MESSAGE" value="排序" />
+    <MESSAGE value="字符串" />
+    <option name="LAST_COMMIT_MESSAGE" value="字符串" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -399,6 +402,21 @@
           <line>40</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file:///var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn/[415]字符串相加.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file:///var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn/[415]字符串相加.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file:///var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn/[415]字符串相加.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -406,6 +424,7 @@
     <SUITE FILE_PATH="coverage/coding$_887_.coverage" NAME="[887]鸡蛋掉落 Coverage Results" MODIFIED="1724581366367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_560__K_.coverage" NAME="[560]和为 K 的子数组 Coverage Results" MODIFIED="1724752674177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_969_.coverage" NAME="[969]煎饼排序 Coverage Results" MODIFIED="1724831457757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
+    <SUITE FILE_PATH="coverage/coding$_415_.coverage" NAME="[415]字符串相加 Coverage Results" MODIFIED="1724845344652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_887___1_.coverage" NAME="[887]鸡蛋掉落 (1) Coverage Results" MODIFIED="1724742978536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
     <SUITE FILE_PATH="coverage/coding$_1884__.coverage" NAME="[1884]鸡蛋掉落-两枚鸡蛋 Coverage Results" MODIFIED="1724743438611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
     <SUITE FILE_PATH="coverage/coding$_523_.coverage" NAME="[523]连续的子数组和 Coverage Results" MODIFIED="1724759931570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
