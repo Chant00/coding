@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leet/字符串/[415]字符串相加.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/字符串/[415]字符串相加.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +185,7 @@
       <workItem from="1724566428116" duration="15235000" />
       <workItem from="1724640134917" duration="3221000" />
       <workItem from="1724726831890" duration="2422000" />
-      <workItem from="1724747232488" duration="19273000" />
+      <workItem from="1724747232488" duration="19606000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -328,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1724838099393</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="字符串">
+      <created>1724845392970</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1724845392970</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

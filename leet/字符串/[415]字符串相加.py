@@ -49,6 +49,7 @@ class Solution:
         m, n = len(num1), len(num2)
         res = ''
         i, j, carry = m - 1, n - 1, 0
+        # carry记录加法时相前进位的值
         while i >= 0 or j >= 0 or carry != 0:
             n1 = ord(num1[i]) - ord('0') if i >= 0 else 0
             n2 = ord(num2[j]) - ord('0') if j >= 0 else 0
