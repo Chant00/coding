@@ -33,17 +33,15 @@
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         m, n = len(num1), len(num2)
-        res = [0] * (m + n)
+        res = [0] * (m + n) # 结果最多为 m + n 位数
         for i in range(m - 1, -1, -1):
             n1 = ord(num1[i]) - ord('0')
             for j in range(n - 1, -1, -1):
                 n2 = ord(num2[j]) - ord('0')
-                p = res[i + j + 1] + n1 * n2
+                p = res[i + j + 1] + n1 * n2  # 注意这里res[i + j + 1]容易漏
                 p1, p2 = divmod(p, 10)
-                print(" p1, p2", p1, p2)
                 res[i + j] += p1
                 res[i + j + 1] = p2
-        print('res', res)
         i = 0
         # 注意这里m + n - 1，这样不用return s if len(s) else "0"
         # 保留了最后一位数字，结果为0的时候能正常输出"0"
