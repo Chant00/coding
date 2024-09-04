@@ -39,3 +39,68 @@ class Solution:
         return res
 
         # write code here
+
+
+def cal_auc(labels, preds):
+    pairs = sorted(zip(labels, preds), key=lambda x: x[1])
+    pairs.append((0, -1))
+    m, n = 0, -1
+    rank_sum = 0
+    window_rank_sum, window_size, window_pos = 0, 0, 0
+    prev_rank, prev_label, prev_score = 0, 0, -1
+
+    for rank, (label, score) in enumerate(pairs, start=1):
+        if prev_label == 1:
+            m += 1
+        else:
+            n += 1
+        if prev_score == score:
+            window_rank_sum += prev_rank
+            window_size += 1
+            if prev_label == 1:
+                window_pos += 1
+        else:
+            if window_size > 0:
+                window_rank_sum += prev_rank
+                window_size += 1
+                if prev_label == 1:
+                    window_pos += 1
+                rank_sum += window_rank_sum / window_size * window_pos
+                window_rank_sum, window_size, window_pos = 0, 0, 0
+            else:
+                if prev_label == 1:
+                    rank_sum += prev_rank
+        prev_rank, prev_label, prev_score = rank, label, score
+    return (rank_sum - m * (m + 1) / 2) / (m * n)
+
+
+
+from sklearn.metrics import roc_curve, auc
+
+
+def sk_learn_auc(labels, pre):
+    fpr, tpr, th = roc_curve(labels, pre, pos_label=1)
+    return auc(fpr, tpr)
+
+
+labels = [0, 1, 1, 0, 0, 1, 1, 1]
+preds = [0.3, 0.4, 0.5, 0.5, 0.5, 0.5, 0.8, 0.9]
+print(cal_auc(labels, preds))
+print(auc2(labels, preds))
+print(sk_learn_auc(labels, preds))
+print("==============")
+
+
+def test():
+    import numpy as np
+    threshold = 1e-5
+    for length in np.random.randint(0, 1000, 10):
+        labels = np.random.randint(0, 2, length)
+        pre = np.round(np.random.random(length), 2)
+        print(cal_auc(labels, pre))
+        real_auc = sk_learn_auc(labels, pre)
+        print(real_auc)
+        assert cal_auc(labels, pre) - real_auc < threshold
+
+
+test()
