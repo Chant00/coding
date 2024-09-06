@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="字符串">
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/[104]二叉树的最大深度.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/[114]二叉树展开为链表.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/[144]二叉树的前序遍历.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/img_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leet/搜索/二叉树/二叉树.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetcode/statistics.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leet/二分查找/[34]在排序数组中查找元素的第一个和最后一个位置.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/二分查找/[34]在排序数组中查找元素的第一个和最后一个位置.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leet/搜索/二叉树/[102]二叉树的层序遍历.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/搜索/二叉树/[102]二叉树的层序遍历.py" afterDir="false" />
+    <list default="true" id="798e8145-8eef-48d2-baa7-e5238439ebc0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/leet/搜索/二叉树/[114]二叉树展开为链表.py" beforeDir="false" afterPath="$PROJECT_DIR$/leet/搜索/二叉树/[114]二叉树展开为链表.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +187,7 @@
       <workItem from="1724726831890" duration="2422000" />
       <workItem from="1724747232488" duration="21900000" />
       <workItem from="1725373606830" duration="16145000" />
-      <workItem from="1725591494587" duration="683000" />
+      <workItem from="1725591494587" duration="1050000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -374,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725422151531</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="二叉树">
+      <created>1725605463864</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1725605463864</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +378,8 @@
     <MESSAGE value="前缀和" />
     <MESSAGE value="排序" />
     <MESSAGE value="字符串" />
-    <option name="LAST_COMMIT_MESSAGE" value="字符串" />
+    <MESSAGE value="二叉树" />
+    <option name="LAST_COMMIT_MESSAGE" value="二叉树" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

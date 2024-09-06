@@ -96,7 +96,6 @@ class Solution:
         stack = [root]
         prev = None
         while stack:
-            print('stack', stack)
             cur = stack.pop()
             if prev:
                 prev.left = None
