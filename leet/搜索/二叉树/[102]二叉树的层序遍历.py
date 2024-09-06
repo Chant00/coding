@@ -44,7 +44,7 @@ class Solution:
         https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/bfs-de-shi-yong-chang-jing-zong-jie-ceng-xu-bian-l/
         BFS，第 1 层的结点还没出完，第 2 层的结点就进来了，而且两层的结点在队列中紧挨在一起，我们无法区分队列中的结点来自哪一层
         因此，我们需要稍微修改一下代码，在每一层遍历开始前，
-        先记录队列中的结点数量 nn（也就是这一层的结点数量），然后一口气处理完这一层的 nn 个结点。
+        先记录队列中的结点数量 n（也就是这一层的结点数量），然后一口气处理完这一层的 n 个结点。
         """
         res = []
         queue = [root] if root else []

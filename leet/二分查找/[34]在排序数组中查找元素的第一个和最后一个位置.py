@@ -73,8 +73,8 @@ def binarySearch2(nums, target, lower, l, r):
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        """二分查找，返回左边界和有边界。
-        第一次[0, n)查找有边界，同时在第一次命中target，记录位置first_hit
+        """二分查找，返回左边界和右边界。
+        第一次[0, n)查找右边界，同时在第一次命中target，记录位置first_hit
         如果first_hit没命中，直接返回-1，-1
         第二次在[0, first_hit]，也就是[0, first_hit+1) 中二分查找左边界
         """
