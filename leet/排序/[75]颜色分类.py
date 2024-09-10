@@ -63,13 +63,27 @@ from typing import List
 
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
+        """把每种if都写出来，最容易理解"""
+        p1, p2 = 0, len(nums) - 1
+        i = 0
+        while i <= p2:
+            if nums[i] == 0:
+                nums[i], nums[p1] = nums[p1], nums[i]
+                p1 += 1
+                i += 1
+            elif nums[i] == 1: # 注意是elif，容易少了else导致有问题
+                i += 1
+            elif nums[i] == 2:
+                nums[i], nums[p2] = nums[p2], nums[i]
+                p2 -= 1
+
+    def sortColors(self, nums: List[int]) -> None:
         """
         双指针法，把0交换到前面，把2交换到后面。
         需要注意从后面交换到中间的数字有可能是0，需要再判断一次。
         """
         p1, p2 = 0, len(nums) - 1
         i = 0
-        print(nums[i])
         while i <= p2:
             if nums[i] == 0:
                 nums[i], nums[p1] = nums[p1], nums[i]
