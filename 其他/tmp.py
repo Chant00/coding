@@ -12,95 +12,62 @@ Created on 2021-08-02
 """
 
 
-class Solution:
-    def zigzagLevelOrder(self, root):
-        if root is None:
-            return []
-        res = []
-        res.append([root.val])
-        layer1 = [root]
-        layer2 = []
-        cnt = 1
-        while layer1:
-            for i in layer1:
-                if i.left is not None:
-                    layer2.append(i.left)
-                if i.right is not None:
-                    layer2.append(i.right)
-
-            if layer2:
-                if cnt % 2 == 0:
-                    res.append([i.val for i in reversed(layer2)])
-                else:
-                    res.append([i.val for i in layer2])
-            layer1 = layer2
-            layer2 = []
-            cnt += 1
-        return res
-
-        # write code here
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low
+    for j in range(low, high + 1):
+        if arr[j] <= pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    # arr[i], arr[high] = arr[high], arr[i]
+    return i - 1
 
 
-def cal_auc(labels, preds):
-    pairs = sorted(zip(labels, preds), key=lambda x: x[1])
-    pairs.append((0, -1))
-    m, n = 0, -1
-    rank_sum = 0
-    window_rank_sum, window_size, window_pos = 0, 0, 0
-    prev_rank, prev_label, prev_score = 0, 0, -1
-
-    for rank, (label, score) in enumerate(pairs, start=1):
-        if prev_label == 1:
-            m += 1
-        else:
-            n += 1
-        if prev_score == score:
-            window_rank_sum += prev_rank
-            window_size += 1
-            if prev_label == 1:
-                window_pos += 1
-        else:
-            if window_size > 0:
-                window_rank_sum += prev_rank
-                window_size += 1
-                if prev_label == 1:
-                    window_pos += 1
-                rank_sum += window_rank_sum / window_size * window_pos
-                window_rank_sum, window_size, window_pos = 0, 0, 0
-            else:
-                if prev_label == 1:
-                    rank_sum += prev_rank
-        prev_rank, prev_label, prev_score = rank, label, score
-    return (rank_sum - m * (m + 1) / 2) / (m * n)
+def quick_sort(arr, low, high):
+    if low < high:
+        p = partition(arr, low, high)
+        quick_sort(arr, low, p - 1)
+        quick_sort(arr, p + 1, high)
+    return arr
 
 
+def _partition3(arr, low, high):
+    """三路快排，将数组分为三个部分, < = >。正常都是分为<= >两部分。可用于解决荷兰旗问题"""
+    p1, p2 = low, high
+    i = low  # 注意这里，总是写错成i=0！！！所有的这种都是经常将边界写成0或者len(arr)-1, 但是这里是low和high是会在递归中变化的
+    base = arr[low]
+    while i <= p2:
+        while i <= p2 and arr[i] > base:  # 注意这里要用while而非if，因为此时可能arr[p2]> base，所以交换后依旧arr[i] > base，需要让p2前进继续交换
+            arr[i], arr[p2] = arr[p2], arr[i]
+            p2 -= 1
+        if arr[i] < base:
+            arr[i], arr[p1] = arr[p1], arr[i]
+            p1 += 1
+        i += 1
+    return p1, p2 + 1
 
-from sklearn.metrics import roc_curve, auc
 
-
-def sk_learn_auc(labels, pre):
-    fpr, tpr, th = roc_curve(labels, pre, pos_label=1)
-    return auc(fpr, tpr)
-
-
-labels = [0, 1, 1, 0, 0, 1, 1, 1]
-preds = [0.3, 0.4, 0.5, 0.5, 0.5, 0.5, 0.8, 0.9]
-print(cal_auc(labels, preds))
-print(auc2(labels, preds))
-print(sk_learn_auc(labels, preds))
-print("==============")
+def quick_sort3(arr, low, high):
+    """快速排序"""
+    if low < high:  # 这个判断和最后的return一定要写，否则就会无限递归，超出递归深度，这是递归的终止条件
+        p1, p2 = _partition3(arr, low, high)
+        quick_sort3(arr, low, p1 - 1)
+        quick_sort3(arr, p2, high)
+    return arr
 
 
 def test():
-    import numpy as np
-    threshold = 1e-5
-    for length in np.random.randint(0, 1000, 10):
-        labels = np.random.randint(0, 2, length)
-        pre = np.round(np.random.random(length), 2)
-        print(cal_auc(labels, pre))
-        real_auc = sk_learn_auc(labels, pre)
-        print(real_auc)
-        assert cal_auc(labels, pre) - real_auc < threshold
+    # import numpy as np
+    # import random
+    #
+    # a = np.random.randint(0, 1000, size=10)
+    # quick_sort(list(a), 0, len(a) - 1)
+    # a = [974, 353, 20, 439, 15, 154, 435, 630, 178, 219]
+    # partition(a, 0, len(a) - 1)
+    # a = [219, 353, 20, 439, 15, 154, 435, 630, 178, 974]
+    a = [1, 2, 1, 0, 0, 0, 0, 1, 2, 2, 2, 1, 1, 1]
+    _partition3(a, 0, len(a) - 1)
+    # quick_sort3(a, 0, len(a) - 1)
 
 
 test()

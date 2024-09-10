@@ -63,6 +63,24 @@ from typing import List
 
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
+        """
+        双指针法，把0交换到前面，把2交换到后面。
+        需要注意从后面交换到中间的数字有可能是0，需要再判断一次。
+        """
+        p1, p2 = 0, len(nums) - 1
+        i = 0
+        print(nums[i])
+        while i <= p2:
+            if nums[i] == 0:
+                nums[i], nums[p1] = nums[p1], nums[i]
+                p1 += 1
+            if nums[i] == 2:
+                nums[i], nums[p2] = nums[p2], nums[i]
+                p2 -= 1
+            else:
+                i += 1
+
+    def sortColors(self, nums: List[int]) -> None:
         """三路快排，直接分为< = >三个部分"""
         p0, p2 = 0, len(nums) - 1
         i = 0
