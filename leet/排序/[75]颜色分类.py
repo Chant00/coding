@@ -99,7 +99,7 @@ class Solution:
         """三路快排，直接分为< = >三个部分"""
         p0, p2 = 0, len(nums) - 1
         i = 0
-        while i <= p2: # 注意这里容易写错位i<=len(nums)
+        while i <= p2:  # 注意这里容易写错位i<=len(nums)
             # 顺序不能反，必须先和后面比，再和前面比。
             # 先走p0的话，p0有可能会大于p1，具体原因还是没想明白
             while i <= p2 and nums[i] == 2:
@@ -139,5 +139,6 @@ class Solution:
                 nums[i], nums[p] = nums[p], nums[i]
                 p += 1
 
+
+Solution().sortColors3_2([2, 0, 2, 1, 1, 0])
 # leetcode submit region end(Prohibit modification and deletion)
-Solution().sortColors([2, 0, 2, 1, 1, 0])
