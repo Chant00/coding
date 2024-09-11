@@ -188,7 +188,7 @@
       <workItem from="1724726831890" duration="2422000" />
       <workItem from="1724747232488" duration="21900000" />
       <workItem from="1725373606830" duration="16145000" />
-      <workItem from="1725591494587" duration="11437000" />
+      <workItem from="1725591494587" duration="12481000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -379,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725973585959</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="二叉树">
+      <created>1725974426972</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1725974426972</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

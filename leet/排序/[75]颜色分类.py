@@ -71,9 +71,10 @@ class Solution:
                 nums[i], nums[p1] = nums[p1], nums[i]
                 p1 += 1
                 i += 1
-            elif nums[i] == 1: # 注意是elif，容易少了else导致有问题
+            elif nums[i] == 1:  # 注意是elif，容易少了else导致有问题
                 i += 1
             elif nums[i] == 2:
+                # 需要注意从后面交换到中间的数字有可能是0，需要再判断一次。所以没有i+=1
                 nums[i], nums[p2] = nums[p2], nums[i]
                 p2 -= 1
 
@@ -99,6 +100,7 @@ class Solution:
         p0, p2 = 0, len(nums) - 1
         i = 0
         while i <= p2:
+            # 顺序不能反，必须先和后面比，再和前面比。
             while i <= p2 and nums[i] == 2:
                 nums[i], nums[p2] = nums[p2], nums[i]
                 p2 -= 1
