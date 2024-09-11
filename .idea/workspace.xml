@@ -188,7 +188,7 @@
       <workItem from="1724726831890" duration="2422000" />
       <workItem from="1724747232488" duration="21900000" />
       <workItem from="1725373606830" duration="16145000" />
-      <workItem from="1725591494587" duration="12481000" />
+      <workItem from="1725591494587" duration="15422000" />
     </task>
     <task id="LOCAL-00001" summary="算法小抄">
       <created>1724491255457</created>
@@ -386,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725974426972</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="二叉树">
+      <created>1726035483530</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1726035483530</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,7 +460,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file:///var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn/[75]颜色分类.py</url>
-          <line>64</line>
+          <line>63</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
@@ -466,7 +473,7 @@
     <SUITE FILE_PATH="coverage/coding$_969_.coverage" NAME="[969]煎饼排序 Coverage Results" MODIFIED="1724831457757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_415_.coverage" NAME="[415]字符串相加 Coverage Results" MODIFIED="1724845344652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_887___1_.coverage" NAME="[887]鸡蛋掉落 (1) Coverage Results" MODIFIED="1724742978536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
-    <SUITE FILE_PATH="coverage/coding$_75_.coverage" NAME="[75]颜色分类 Coverage Results" MODIFIED="1725971760180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
+    <SUITE FILE_PATH="coverage/coding$_75_.coverage" NAME="[75]颜色分类 Coverage Results" MODIFIED="1726038369592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_1884__.coverage" NAME="[1884]鸡蛋掉落-两枚鸡蛋 Coverage Results" MODIFIED="1724743438611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leet/动态规划" />
     <SUITE FILE_PATH="coverage/coding$_523_.coverage" NAME="[523]连续的子数组和 Coverage Results" MODIFIED="1724759931570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />
     <SUITE FILE_PATH="coverage/coding$_43_.coverage" NAME="[43]字符串相乘 Coverage Results" MODIFIED="1724837193230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/var/folders/p0/kb961x5d6wd79gfp2h6t_8500000gn/T/leetcode/editor/cn" />

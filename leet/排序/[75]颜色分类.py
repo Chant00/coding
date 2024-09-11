@@ -62,7 +62,7 @@ from typing import List
 
 
 class Solution:
-    def sortColors(self, nums: List[int]) -> None:
+    def sortColors3_2(self, nums: List[int]) -> None:
         """把每种if都写出来，最容易理解"""
         p1, p2 = 0, len(nums) - 1
         i = 0
@@ -78,7 +78,7 @@ class Solution:
                 nums[i], nums[p2] = nums[p2], nums[i]
                 p2 -= 1
 
-    def sortColors(self, nums: List[int]) -> None:
+    def sortColors3_1(self, nums: List[int]) -> None:
         """
         双指针法，把0交换到前面，把2交换到后面。
         需要注意从后面交换到中间的数字有可能是0，需要再判断一次。
@@ -95,12 +95,13 @@ class Solution:
             else:
                 i += 1
 
-    def sortColors(self, nums: List[int]) -> None:
+    def sortColors3_0(self, nums: List[int]) -> None:
         """三路快排，直接分为< = >三个部分"""
         p0, p2 = 0, len(nums) - 1
         i = 0
-        while i <= p2:
+        while i <= p2: # 注意这里容易写错位i<=len(nums)
             # 顺序不能反，必须先和后面比，再和前面比。
+            # 先走p0的话，p0有可能会大于p1，具体原因还是没想明白
             while i <= p2 and nums[i] == 2:
                 nums[i], nums[p2] = nums[p2], nums[i]
                 p2 -= 1
@@ -109,10 +110,8 @@ class Solution:
                 p0 += 1
             i += 1
 
-    def sortColors1(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
+    def sortColors2(self, nums: List[int]) -> None:
+        """"""
         p0 = p1 = 0
         for i in range(len(nums)):
             if nums[i] == 1:
@@ -120,11 +119,25 @@ class Solution:
                 p1 += 1
             elif nums[i] == 0:
                 nums[i], nums[p0] = nums[p0], nums[i]
+                # 我们可以注意到，因为连续的 0 之后是连续的 1，因此如果我们将 0 与 nums[p0] 进行交换，那么我们可能会把一个 1 交换出去。
+                # 当p0 < p1时，我们已经将一些 1 连续地放在头部，此时一定会把一个 1 交换出去，所以需要将nums[i]与nums[p1]交换。
                 if p0 < p1:
                     nums[i], nums[p1] = nums[p1], nums[i]
+                # p1也要移动，因为0都在1前面，0多了一个，1的位置也必然是往后移动一位的
                 p0 += 1
                 p1 += 1
 
+    def sortColors1(self, nums: List[int]) -> None:
+        """两次循环"""
+        p = 0
+        for i, num in enumerate(nums):
+            if num == 0:
+                nums[i], nums[p] = nums[p], nums[i]
+                p += 1
+        for i in range(p, len(nums)):
+            if nums[i] == 1:
+                nums[i], nums[p] = nums[p], nums[i]
+                p += 1
 
 # leetcode submit region end(Prohibit modification and deletion)
 Solution().sortColors([2, 0, 2, 1, 1, 0])
